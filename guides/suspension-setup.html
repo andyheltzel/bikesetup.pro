@@ -466,6 +466,6 @@ h2.section-head{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacin
 </footer>
 
 <script src="../nav.js"></script>
-<script>renderSiteHeader('guides');</script>
+<script>renderSiteHeader('guides','suspension-setup');</script>
 <script>document.addEventListener('unitsdetected',function(e){var units=e.detail.units;var country=sessionStorage.getItem('bsp_country')||'';if(!country)return;var label=units==='imperial'?'lbs / imperial':'kg / metric';var toast=document.createElement('div');toast.className='unit-toast';toast.innerHTML='<span style=line-height:1.4><strong style=display:block;margin-bottom:2px;color:#fff>Units set to '+label+'</strong><span style=color:#aaa;font-size:12px>Auto-detected - measurements updated in this guide</span></span><button onclick="this.parentElement.classList.remove(\x27show\x27)" style="margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;padding:0">&#215;</button>';document.body.appendChild(toast);requestAnimationFrame(function(){toast.classList.add('show');});setTimeout(function(){toast.classList.remove('show');setTimeout(function(){toast.remove();},350);},6000);});</script></body>
 </html>
