@@ -55,9 +55,24 @@ h2.section-head{font-family:"Bebas Neue",sans-serif;font-size:28px;letter-spacin
 .brand-section{margin:24px 0}
 .unit-toast{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;font-family:Barlow,sans-serif;font-size:13px;padding:10px 16px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;max-width:320px}.unit-toast.show{opacity:1;transform:translateY(0);pointer-events:auto}.unit-toast-text{line-height:1.4}.unit-toast-close{margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;padding:0;line-height:1;flex-shrink:0}</style>
 </head>
-<body>
+<body class="guide-page">
 <div class="checker-band"></div>
 <header class="site-header" id="site-header"></header>
+<!-- Mobile section nav (visible only on small screens) -->
+<div class="guide-mobile-nav">
+  <label>Jump to</label>
+  <select onchange="if(this.value) { window.location.hash=this.value; this.value=''; }">
+    <option value="">— Select section —</option>
+    <option value="phase1">Phase 1: Before You Start</option>
+    <option value="phase2">Phase 2: Set Sag</option>
+    <option value="phase3">Phase 3: Rebound</option>
+    <option value="phase4">Phase 4: Compression</option>
+    <option value="phase5">Phase 5: Tokens &amp; Spacers</option>
+    <option value="fox">Fox Fork Reference</option>
+    <option value="rockshox">RockShox Reference</option>
+    <option value="troubleshoot">Troubleshooting</option>
+  </select>
+</div>
 <div class="page-body">
 
 <aside class="sidebar">

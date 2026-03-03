@@ -1203,3 +1203,65 @@ footer a:hover { color: #888; }
   .calc-grid { grid-template-columns: 1fr; }
   .guides-grid { grid-template-columns: 1fr; }
 }
+
+/* ── GUIDE SIDEBAR: MOBILE DROPDOWN ── */
+/* On mobile, hide the full sidebar and show a compact select dropdown instead */
+.guide-mobile-nav {
+  display: none;
+}
+
+@media (max-width: 680px) {
+  /* Hide the full sidebar entirely on guide pages */
+  .guide-page .sidebar {
+    display: none;
+  }
+  /* Show the mobile dropdown nav instead */
+  .guide-mobile-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--black);
+    padding: 10px 14px;
+    border-bottom: 2px solid var(--accent);
+    position: sticky;
+    top: 56px; /* height of site header */
+    z-index: 50;
+  }
+  .guide-mobile-nav label {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #555;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .guide-mobile-nav select {
+    flex: 1;
+    background: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    padding: 7px 10px;
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+    cursor: pointer;
+  }
+  /* Guide page body goes full width when sidebar hidden */
+  .guide-page .page-body {
+    flex-direction: column;
+  }
+  .guide-page main {
+    width: 100%;
+    padding: 1.4rem 1rem 3rem;
+  }
+}
