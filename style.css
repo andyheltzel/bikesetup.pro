@@ -1021,3 +1021,52 @@ footer a:hover { color: #888; }
   }
   .site-header.nav-open .site-nav > a { padding: 0.7rem 2rem; font-size: 0.9rem; width: 100%; }
 }
+
+/* ── AFFILIATE TOOL LINKS ── */
+.tool-item.has-link {
+  border-color: var(--border);
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+}
+.tool-item.has-link:hover {
+  border-color: var(--accent2);
+  background: #f0f5ff;
+  box-shadow: 0 2px 8px rgba(0,87,168,0.10);
+  color: var(--accent2);
+}
+.tool-item .tool-shop-tag {
+  margin-left: auto;
+  font-size: 9px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  background: #e8f0ff;
+  padding: 2px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.tool-item.has-link:hover .tool-shop-tag {
+  opacity: 1;
+}
+.affiliate-disclosure {
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px;
+  color: var(--faint);
+  line-height: 1.5;
+  margin-top: 0.5rem;
+  padding: 8px 12px;
+  background: var(--surface);
+  border-radius: 2px;
+  border-left: 2px solid var(--border);
+}
+.affiliate-disclosure a {
+  color: var(--accent2);
+  text-decoration: none;
+}
+.affiliate-disclosure a:hover { text-decoration: underline; }

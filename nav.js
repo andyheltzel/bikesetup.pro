@@ -1,3 +1,16 @@
+// ── GOOGLE ANALYTICS 4 ──
+(function() {
+  var script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtag/js?id=G-0DTN4NHE7X';
+  document.head.appendChild(script);
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('js', new Date());
+  gtag('config', 'G-0DTN4NHE7X');
+})();
+
 // BikeSetup.Pro — shared nav renderer
 // activePage: 'home' | 'calculators' | 'suspension' | 'guides'
 // activeSubPage: optional, e.g. 'pressure', 'build-a-wheel', 'fit-basics'
