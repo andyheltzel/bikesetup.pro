@@ -850,7 +850,24 @@ footer a:hover { color: #888; }
     border-bottom: 3px solid var(--accent);
     overflow-x: auto;
   }
-  .sidebar-label, .sidebar-divider { display: none; }
+  .sidebar-label { display: none; }
+  .sidebar-divider { display: none; }
+  .sidebar-link-out {
+    flex-direction: column;
+    gap: .2rem;
+    align-items: center;
+    text-align: center;
+    font-size: .68rem;
+    min-width: 65px;
+    padding: .7rem .9rem;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+  }
+  .sidebar-link-out:hover {
+    border-left-color: transparent;
+    border-bottom-color: var(--accent2);
+  }
   .sidebar nav {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1070,3 +1087,119 @@ footer a:hover { color: #888; }
   text-decoration: none;
 }
 .affiliate-disclosure a:hover { text-decoration: underline; }
+
+/* ── SIDEBAR DIVIDER WITH LABEL ── */
+.sidebar-divider {
+  position: relative;
+  border: none;
+  border-top: 1px solid #222;
+  margin: 6px 0;
+  display: flex;
+  align-items: center;
+}
+.sidebar-divider-label {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #444;
+  background: var(--black);
+  padding: 0 8px 0 14px;
+  white-space: nowrap;
+}
+
+/* ── SIDEBAR EXTERNAL LINK (e.g. Suspension) ── */
+.sidebar-link-out {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.8rem 0.6rem 1rem;
+  color: #888;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color .15s, background .15s, border-color .15s;
+  cursor: pointer;
+  width: 100%;
+}
+.sidebar-link-out:hover {
+  color: #fff;
+  background: rgba(255,255,255,.05);
+  border-left-color: var(--accent2);
+}
+.sidebar-link-out .nav-icon {
+  width: 26px; height: 26px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.sidebar-link-out .nav-icon svg {
+  width: 18px; height: 18px;
+  fill: none; stroke: currentColor;
+  stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+}
+.sidebar-link-out .nav-text {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.sidebar-link-out .nav-sub {
+  display: block;
+  font-size: .62rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: #555;
+  text-transform: none;
+  margin-top: 1px;
+}
+.sidebar-link-out:hover .nav-sub { color: #aaa; }
+
+/* ── IMPROVED MOBILE LAYOUT ── */
+@media (max-width: 480px) {
+  /* Homepage hero */
+  .hero { padding: 2.5rem 1.2rem 2.2rem; }
+  .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+  .hero-sub { font-size: .88rem; margin-bottom: 1.5rem; }
+  .hero-stats { gap: 1.4rem; margin-top: 2rem; }
+  .hero-stat .num { font-size: 1.7rem; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn, .hero-ctas .btn-outline { text-align: center; padding: .7rem 1.4rem; }
+
+  /* Calc card grid — single column on small phones */
+  .calc-grid { grid-template-columns: 1fr !important; }
+
+  /* Guide cards */
+  .guides-grid { grid-template-columns: 1fr !important; }
+
+  /* Calculator main panel */
+  main { padding: 1.2rem .9rem 3rem; }
+  .panel-title { font-size: 1.5rem; }
+  .panel-desc { font-size: .82rem; }
+
+  /* Input rows stack on narrow screens */
+  .input-row { grid-template-columns: 1fr !important; }
+  .input-with-toggle { flex-direction: column; }
+
+  /* Mobile sidebar tab bar — smaller icons, tighter */
+  .sidebar nav button,
+  .sidebar nav a,
+  .sidebar-link-out {
+    min-width: 54px;
+    padding: .55rem .5rem;
+  }
+  .nav-icon { width: 20px; height: 20px; }
+
+  /* Footer text wrapping */
+  footer { flex-direction: column; gap: .5rem; text-align: center; padding: 1.2rem; }
+
+  /* Section padding */
+  .section { padding: 2.2rem 1rem; }
+}
+
+/* Slightly wider phones (S25 portrait is ~393px CSS width) */
+@media (max-width: 430px) {
+  .calc-grid { grid-template-columns: 1fr; }
+  .guides-grid { grid-template-columns: 1fr; }
+}
