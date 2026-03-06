@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Build a Bicycle Wheel from Scratch — Step-by-Step Guide | BikeSetup.Pro</title>
+<meta name="description" content="Complete step-by-step guide to hand-building a bicycle wheel: spoke lacing patterns, initial tensioning, lateral and radial truing, stress relieving, and final tension check. Covers road, gravel, and MTB wheels. Includes spoke tension calculator link.">
+<link rel="stylesheet" href="../style.css">
+<style>
+.guide-wrap { max-width: 960px; margin: 0 auto; padding: 3rem 2.5rem 5rem; display: flex; gap: 3rem; align-items: flex-start; }
+.guide-sidebar { width: 200px; flex-shrink: 0; position: sticky; top: 80px; }
+.guide-sidebar-label { font-family: 'Barlow Condensed', sans-serif; font-size: 0.62rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.6rem; }
+.guide-toc { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.guide-toc li a { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--muted); text-decoration: none; padding: 0.3rem 0; border-left: 2px solid var(--border); padding-left: 0.7rem; transition: color 0.12s, border-color 0.12s; }
+.guide-toc li a:hover { color: var(--text); border-left-color: var(--accent); }
+.guide-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.3rem; }
+.back-link { display: inline-flex; align-items: center; gap: 0.3rem; font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); text-decoration: none; margin-bottom: 1.5rem; transition: color 0.12s; }
+.back-link:hover { color: var(--text); }
+@media (max-width: 760px) { .guide-wrap { flex-direction: column; padding: 1.5rem 1.2rem 3rem; gap: 1.5rem; } .guide-sidebar { width: 100%; position: static; } }
+.unit-toast{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;font-family:Barlow,sans-serif;font-size:13px;padding:10px 16px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;max-width:320px}.unit-toast.show{opacity:1;transform:translateY(0);pointer-events:auto}.unit-toast-text{line-height:1.4}.unit-toast-close{margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;padding:0;line-height:1;flex-shrink:0}</style>
+</head>
+<body>
+<div class="checker-band"></div>
+<header class="site-header" id="site-header"></header>
+<!-- Mobile jump nav: shown only on small screens -->
+<div class="guide-mobile-nav">
+  <label>Jump to</label>
+  <select onchange="if(this.value){window.location.hash=this.value;this.value=''}">
+    <option value="">— Select section —</option>
+    <option value="overview">Overview</option>
+    <option value="tools">Tools & Parts</option>
+    <option value="lacing">Lacing Pattern</option>
+    <option value="tensioning">Initial Tensioning</option>
+    <option value="truing">Truing</option>
+    <option value="final">Final Tension</option>
+    <option value="stress">Stress Relief</option>
+    <option value="finishing">Finishing</option>
+  </select>
+</div>
+
+
+<div class="guide-wrap">
+  <aside class="guide-sidebar">
+    <a href="index.html" class="back-link">← All Guides</a>
+    <div class="guide-sidebar-label">On This Page</div>
+    <ul class="guide-toc">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#tools">Tools & Parts</a></li>
+      <li><a href="#lacing">Lacing the Spokes</a></li>
+      <li><a href="#tensioning">Initial Tensioning</a></li>
+      <li><a href="#truing">Truing the Wheel</a></li>
+      <li><a href="#final-tension">Final Tension</a></li>
+      <li><a href="#stress-relief">Stress Relieving</a></li>
+      <li><a href="#finish">Finishing Up</a></li>
+    </ul>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+      <div class="guide-sidebar-label">Related Calculators</div>
+      <a href="../calculators.html#spoke" style="display:block;font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:700;color:var(--accent);text-decoration:none;padding:0.3rem 0">Spoke Tension →</a>
+    </div>
+  </aside>
+
+  <article class="guide-content">
+    <div class="guide-meta">Wheels · Intermediate · ~15 min read · 12 steps</div>
+    <div class="panel-tag" style="margin-top:0.3rem">Wheels</div>
+    <div class="panel-title">How to Build a Wheel</div>
+    <div class="panel-desc" style="margin-bottom:2rem">Building your own wheel is one of the most satisfying skills in cycling. A hand-built wheel can be tailored exactly to your needs — the right rim width, hub spacing, spoke count, and lacing pattern for your riding style and weight. It's slower than machine building, but the result is a wheel that's properly tensioned, stress-relieved, and true.</div>
+
+    <h2 id="overview">Overview</h2>
+    <p>Wheel building has four phases: <strong>lacing</strong> (threading all spokes through hub and rim), <strong>initial tensioning</strong> (getting all spokes roughly equal), <strong>truing</strong> (removing lateral and radial wobble), and <strong>final tensioning</strong> with stress relief. Rushing any phase makes the next harder. Plan for 1–3 hours your first time.</p>
+
+    <div class="pro-tip">Use the Spoke Tension calculator on this site to get your target kgf range before you start. Write it down — you'll reference it often.</div>
+
+    <h2 id="tools">Tools & Parts</h2>
+    <p>You'll need the following before you start:</p>
+    <div class="tools-grid">
+      <a href="https://www.jensonusa.com/search#q=spoke%20wrench&t=All" class="tool-item has-link" target="_blank" rel="noopener noreferrer">Spoke wrench (correct size)<span class="tool-shop-tag">Shop Jenson USA</span></a>
+      <a href="https://www.jensonusa.com/search#q=truing%20stand&t=All" class="tool-item has-link" target="_blank" rel="noopener noreferrer">Truing stand (or the bike's frame)<span class="tool-shop-tag">Shop Jenson USA</span></a>
+      <a href="https://www.jensonusa.com/search#q=spoke%20tension%20meter&t=All" class="tool-item has-link" target="_blank" rel="noopener noreferrer">Spoke tension meter<span class="tool-shop-tag">Shop Jenson USA</span></a>
+      <a href="https://www.jensonusa.com/search#q=nipple%20driver&t=All" class="tool-item has-link" target="_blank" rel="noopener noreferrer">Nipple driver or screwdriver<span class="tool-shop-tag">Shop Jenson USA</span></a>
+      <a href="https://www.jensonusa.com/search#q=spoke%20prep&t=All" class="tool-item has-link" target="_blank" rel="noopener noreferrer">Spoke prep / thread compound<span class="tool-shop-tag">Shop Jenson USA</span></a>
+      <a href="https://www.jensonusa.com/search#q=wheel%20dish%20tool&t=All" class="tool-item has-link" target="_blank" rel="noopener noreferrer">Wheel dish tool<span class="tool-shop-tag">Shop Jenson USA</span></a>
+      <div class="tool-item">Marker or tape for reference</div>
+    </div>
+    <p class="affiliate-disclosure">
+      ✦ Links marked &ldquo;Shop Jenson USA&rdquo; are affiliate links &mdash; if you buy something, BikeSetup.Pro earns a small commission at no extra cost to you. We only link to items genuinely used in this process.
+    </p>
+    <p>Parts: a <a href="https://www.jensonusa.com/search#q=mtb%20rim&t=All" target="_blank" rel="noopener noreferrer" style="color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2)">rim</a> with the correct ERD (effective rim diameter), a <a href="https://www.jensonusa.com/search#q=mtb%20hub&t=All" target="_blank" rel="noopener noreferrer" style="color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2)">hub</a> with the right flange spacing and axle length, and <a href="https://www.jensonusa.com/search#q=spokes&t=All" target="_blank" rel="noopener noreferrer" style="color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2)">spokes</a> cut to the correct length. Use a spoke length calculator (Wheelpro, DT Swiss, or Spocalc) and double-check your measurements — wrong length spokes are the most common beginner mistake.</p>
+
+    <div class="warning-tip">Spoke length matters by millimeter. A spoke 2mm too long will bottom out in the nipple and crack the rim bed. Too short and it won't have enough thread engagement to hold tension.</div>
+
+    <h2 id="lacing">Lacing the Spokes</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Start with the drive-side flange (rear wheel)</div><p>Insert spokes into every other hole in the hub flange — 9 spokes on a 36-spoke hub. The spoke heads should alternate: first spoke head-in, then head-out (or all one way, depending on your lacing pattern). For a 3-cross pattern, the first spoke goes through the valve hole area and crosses 3 spokes.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Set the key spoke</div><p>Find the valve hole in the rim. The "key spoke" is the first drive-side spoke that goes into the rim hole just to the right of the valve hole. Screw a nipple on two turns. This sets the orientation for every other spoke — don't skip this step or you'll need to relace.</p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Lace remaining drive-side spokes</div><p>Work every 4th rim hole, threading each spoke and crossing 3 other spokes (for 3-cross). Screw each nipple on 2 turns. When done, all drive-side spokes should be in, with every other rim hole occupied.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Flip the wheel and lace the non-drive side</div><p>Insert the remaining hub spokes. These will cross the already-laced spokes from the other flange. Thread them into the remaining empty rim holes. Pay attention to the direction of the cross — the non-drive spokes should cross over the drive-side spokes at the final cross (closest to the rim).</p></div></div>
+    </div>
+
+    <h2 id="tensioning">Initial Tensioning</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Bring all nipples to equal thread depth</div><p>Using a nipple driver or screwdriver, turn every nipple until you can just barely see the slot of the spoke through the nipple hole. This gives you equal starting depth for all spokes before you begin tightening.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Tighten all spokes 3 turns at a time</div><p>Go around the entire wheel, tightening each spoke the same amount (3 full turns). Repeat 2–3 times until spokes feel snug but not tight. The wheel will still be wobbly — that's fine. You're just establishing a baseline even tension.</p></div></div>
+    </div>
+
+    <div class="pro-tip">Apply a small amount of spoke prep to each nipple thread before tensioning. This lubricates the thread so your spoke wrench gives you tension, not friction — and prevents nipples from loosening over time.</div>
+
+    <h2 id="truing">Truing the Wheel</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Fix lateral (side-to-side) wobble first</div><p>Spin the wheel in the truing stand. Where the rim moves left, tighten the spokes coming from the right flange. Where it moves right, tighten spokes from the left flange. Work in small increments — ¼ to ½ turn at a time — and work on the center of the wobble, not the edges.</p></div></div>
+      <div class="step"><div class="step-num">8</div><div class="step-body"><div class="step-title">Address radial (up-down) wobble</div><p>High spots (where the rim bulges outward) need spokes on both sides to be tightened together. Low spots need loosening on both sides. Radial truing is harder than lateral — be conservative and check frequently. A perfectly round rim makes radial truing easier.</p></div></div>
+      <div class="step"><div class="step-num">9</div><div class="step-body"><div class="step-title">Check dish (rim centering)</div><p>Use a dishing tool to confirm the rim sits equidistant between the two dropout faces. A rear wheel with a cassette will have tighter drive-side spokes to offset the flange asymmetry. If the wheel is off-center, tighten all spokes on one side and loosen the other by equal amounts.</p></div></div>
+    </div>
+
+    <h2 id="final-tension">Final Tensioning</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">10</div><div class="step-body"><div class="step-title">Bring tension to target range</div><p>Using a spoke tension meter, bring all spokes to within the target range (see the Spoke Tension calculator). Drive-side rear spokes are typically <span data-metric="110–130 kgf" data-imperial="243–287 lbf">110–130 kgf</span>. Non-drive side will naturally be lower due to wheel dish. Alternate between tensioning and checking lateral true — they affect each other.</p></div></div>
+    </div>
+
+    <h2 id="stress-relief">Stress Relieving</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">11</div><div class="step-body"><div class="step-title">Flex the wheel to seat the spokes</div><p>Stand the wheel vertically. Grip two spokes near the flange and squeeze firmly — you'll hear clicks and pings as nipples seat and spokes unwind. Work your way around the entire wheel, squeezing each group of 2–4 spokes. The wheel will go temporarily out of true. Re-true it. Repeat the flex-and-true cycle 3–4 times until the wheel stops going out of true after flexing. This is critical — a wheel that hasn't been stress-relieved will loosen and go out of true within a few rides.</p></div></div>
+    </div>
+
+    <h2 id="finish">Finishing Up</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">12</div><div class="step-body"><div class="step-title">Final check and trim</div><p>Do a final tension check and true. Spin the wheel in the stand and confirm lateral wobble is under 0.5mm (ideally 0.3mm or less) and radial wobble is under 1mm. If spoke ends protrude past the nipple inside the rim, file them flush or use rim tape to prevent punctures.</p></div></div>
+    </div>
+
+    <div class="pro-tip">Check spoke tension again after 50–100 km. Newly built wheels settle in and a few spokes will loosen slightly. A single touch-up session is normal and gets the wheel stable for years.</div>
+
+    <div class="guide-related">
+      <div class="guide-related-label">Related Guides & Calculators</div>
+      <a href="true-a-wheel.html" class="btn-outline">How to True a Wheel</a>
+      <a href="../calculators.html#spoke" class="btn">Spoke Tension Calculator</a>
+    </div>
+  </article>
+</div>
+
+<div class="checker-band"></div>
+<footer>
+  <span>BikeSetup.Pro</span> &nbsp;·&nbsp; <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">All Guides</a> &nbsp;·&nbsp; <a href="../calculators.html">Calculators</a>
+</footer>
+<script src="../nav.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => renderSiteHeader('guides','build-a-wheel'));</script>
+<script>document.addEventListener('unitsdetected',function(e){var units=e.detail.units;var country=sessionStorage.getItem('bsp_country')||'';if(!country)return;var label=units==='imperial'?'lbs / imperial':'kg / metric';var toast=document.createElement('div');toast.className='unit-toast';toast.innerHTML='<span style=line-height:1.4><strong style=display:block;margin-bottom:2px;color:#fff>Units set to '+label+'</strong><span style=color:#aaa;font-size:12px>Auto-detected - measurements updated in this guide</span></span><button onclick="this.parentElement.classList.remove(\x27show\x27)" style="margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;padding:0">&#215;</button>';document.body.appendChild(toast);requestAnimationFrame(function(){toast.classList.add('show');});setTimeout(function(){toast.classList.remove('show');setTimeout(function(){toast.remove();},350);},6000);});</script></body>
+</html>

@@ -1196,6 +1196,13 @@ footer a:hover { color: #888; }
 
   /* Section padding */
   .section { padding: 2.2rem 1rem; }
+
+  /* Fix dual result columns on narrow phones */
+  .dual-result { grid-template-columns: 1fr !important; }
+  /* Prevent bike-lookup selects from overflowing */
+  .select-wrap, .bike-lookup-row .select-wrap { min-width: 0 !important; }
+  .bike-lookup-row { flex-direction: column; align-items: stretch; }
+  .btn-apply { width: 100%; }
 }
 
 /* Slightly wider phones (S25 portrait is ~393px CSS width) */
@@ -1224,7 +1231,7 @@ footer a:hover { color: #888; }
     padding: 10px 14px;
     border-bottom: 2px solid var(--accent);
     position: sticky;
-    top: 56px; /* height of site header */
+    top: 64px; /* site-header min-height */
     z-index: 50;
   }
   .guide-mobile-nav label {
@@ -1264,4 +1271,124 @@ footer a:hover { color: #888; }
     width: 100%;
     padding: 1.4rem 1rem 3rem;
   }
+}
+
+
+/* ══════════════════════════════════════════════
+   MOBILE TAB BAR — replaces sidebar on phones
+   Hidden on desktop, visible ≤ 680px
+   ══════════════════════════════════════════════ */
+.mobile-tab-bar { display: none; }
+
+@media (max-width: 680px) {
+
+  /* Hide both sidebar types on mobile completely */
+  aside.sidebar,
+  .sidebar {
+    display: none !important;
+  }
+  .guide-sidebar {
+    display: none !important;
+  }
+
+  /* Show mobile tab bar */
+  .mobile-tab-bar {
+    display: flex;
+    background: var(--black);
+    border-bottom: 3px solid var(--accent);
+    overflow-x: auto;
+    scrollbar-width: none;
+    position: sticky;
+    top: 64px;
+    z-index: 90;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mobile-tab-bar::-webkit-scrollbar { display: none; }
+
+  .mobile-tab-bar button,
+  .mobile-tab-bar a.tab-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 10px 16px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    background: none;
+    color: #666;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+    text-decoration: none;
+    transition: color .15s, border-color .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mobile-tab-bar button.active {
+    color: #fff;
+    border-bottom-color: var(--accent);
+  }
+  .mobile-tab-bar a.tab-link:hover {
+    color: #fff;
+  }
+  .mobile-tab-bar svg {
+    width: 20px; height: 20px;
+    fill: none; stroke: currentColor;
+    stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+  /* Accent-coloured external link tab (e.g. Guide, Suspension) */
+  .mobile-tab-bar .tab-ext {
+    color: var(--accent2);
+    border-left: 1px solid #2a2a2a;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+  .mobile-tab-bar .tab-ext:hover { color: #fff; }
+  .mobile-tab-bar .tab-divider {
+    width: 1px;
+    background: #2a2a2a;
+    align-self: stretch;
+    margin: 6px 0;
+    flex-shrink: 0;
+  }
+
+  /* Guide-wrap: full width when sidebar is hidden */
+  .guide-wrap {
+    flex-direction: column !important;
+    padding: 1.2rem 1rem 3rem !important;
+    gap: 0 !important;
+  }
+  .guide-content {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Table overflow scroll */
+  .svc-table, table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .spec-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 12px !important;
+  }
+
+  /* Guide page main full-width */
+  .guide-page main,
+  .guide-page .page-body > main {
+    width: 100% !important;
+    padding: 1.4rem 1rem 3rem !important;
+  }
+  .guide-page .page-body { flex-direction: column; }
 }

@@ -94,6 +94,30 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
   </div>
 </aside>
 
+<!-- Mobile tab bar (replaces sidebar on phones) -->
+<div class="mobile-tab-bar" id="susp-mobile-tabs">
+  <button onclick="mobileSwitch('fork',this)" class="active">
+    <svg viewBox="0 0 24 24"><path d="M8 2v16l4 4 4-4V2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
+    Fork
+  </button>
+  <button onclick="mobileSwitch('shock',this)">
+    <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><rect x="8" y="6" width="8" height="12" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+    Shock
+  </button>
+  <button onclick="mobileSwitch('sag',this)">
+    <svg viewBox="0 0 24 24"><path d="M3 20 L7 8 L12 14 L17 5 L21 20"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+    Sag
+  </button>
+  <button onclick="mobileSwitch('service',this)">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+    Service
+  </button>
+  <a href="guides/suspension-setup.html" class="tab-link tab-ext">
+    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    Guide
+  </a>
+</div>
+
 <main>
 
 <!-- FORK SETUP -->
@@ -439,7 +463,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
   </div>
   <hr class="sec-div">
   <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;margin-bottom:10px;">Sag Reference by Brand &amp; Discipline</div>
-  <table class="svc-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="svc-table">
     <thead><tr><th>Brand / Type</th><th>Sag Target</th><th>Notes</th></tr></thead>
     <tbody>
       <tr><td>Fox Fork (all models)</td><td>15–20%</td><td>Official Fox spec. 15% = firm/XC, 20% = plush/enduro. Source: Fox tech.ridefox.com</td></tr>
@@ -451,7 +475,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       <tr><td>Coil Shock (any brand)</td><td>25–30%</td><td>Swap spring rate if you cannot reach target range within 5 turns of preload</td></tr>
       <tr><td>DH / Bike Park</td><td>30–35%</td><td>More sag = more travel in use = better absorption on big hits and landings</td></tr>
     </tbody>
-  </table>
+  </table></div>
 </div>
 
 <!-- SERVICE INTERVALS -->
@@ -463,7 +487,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
   </div>
 
   <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Fox Suspension — Official Intervals</div>
-  <table class="svc-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="svc-table">
     <thead><tr><th>Service</th><th>Interval</th><th>What It Covers</th></tr></thead>
     <tbody>
       <tr><td>Lower Leg Service (fork)</td><td>50 hrs or annually</td><td>Drain and replace lower leg oil, clean and re-lube dust wipers and foam rings</td></tr>
@@ -472,10 +496,10 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       <tr><td>Rear Shock — basic</td><td>100 hrs</td><td>Wipe seals, inspect for leaks, check and top up air pressure</td></tr>
       <tr><td>Rear Shock — full service</td><td>200 hrs</td><td>Rebuild damper, replace all seals and oil, inspect IFP</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin:20px 0 8px;">RockShox Suspension — Official Intervals</div>
-  <table class="svc-table">
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="svc-table">
     <thead><tr><th>Service</th><th>Interval</th><th>What It Covers</th></tr></thead>
     <tbody>
       <tr><td>Lower Leg Service (fork)</td><td>50 hrs or annually</td><td>Drain lower leg oil, clean seals, lubricate with Maxima PLUSH Dynamic Suspension Lube</td></tr>
@@ -484,7 +508,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       <tr><td>Rear Shock — basic</td><td>100 hrs</td><td>Clean and lube seals, inspect air can, re-check sag</td></tr>
       <tr><td>Rear Shock — full service</td><td>200 hrs</td><td>Full rebuild: IFP, can seals, main piston seals, fresh oil</td></tr>
     </tbody>
-  </table>
+  </table></div>
 
   <div class="tune-tip" style="margin-top:16px;"><strong>Pro tip:</strong> A basic lower leg service takes about 30 minutes and transforms small-bump sensitivity. It is the single highest-impact DIY maintenance you can do on any suspension fork. Track hours via your GPS computer — most Garmin and Wahoo units display total ride time.</div>
 
@@ -540,9 +564,12 @@ function selShockBrand(b,btn){
 }
 function switchSub(id,btn){
   document.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.sidebar nav button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav button, #susp-mobile-tabs button').forEach(b=>b.classList.remove('active'));
   document.getElementById('sub-'+id).classList.add('active');
   btn.classList.add('active');
+}
+function mobileSwitch(id,btn){
+  switchSub(id,btn);
 }
 
 // Travel map
