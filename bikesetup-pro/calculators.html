@@ -250,7 +250,7 @@
       <div id="result-spoke" class="result-box">
         <div class="result-label">Target Tension Range</div>
         <div class="result-value" id="s-val">—</div>
-        <div id="s-nm" style="margin-top:0.3rem;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;letter-spacing:0.05em;color:#666;"></div>
+        <div id="s-nm" style="margin-top:0.3rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;letter-spacing:0.05em;color:var(--muted);"></div>
         <div id="s-note" class="result-note"></div>
       </div>
     </div>
@@ -303,7 +303,7 @@
           <div class="brand-header">Recommended amount by brand (per tire)</div>
           <div class="brand-grid" id="sl-brands"></div>
         </div>
-        <div id="sl-total-row" style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid #333;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.05em;color:#888;"></div>
+        <div id="sl-total-row" style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.82rem;letter-spacing:0.05em;color:var(--faint);"></div>
         <div id="sl-note" class="result-note"></div>
       </div>
     </div>
@@ -564,8 +564,8 @@ function calcPressure() {
   let front=Math.max(lo,Math.min(hi,Math.round((fL/width)*k*tf*10)/10));
   let rear =Math.max(lo,Math.min(hi,Math.round((rL/width)*k*tf*10)/10));
   const bf=(front/14.504).toFixed(2), br=(rear/14.504).toFixed(2);
-  document.getElementById('p-front').innerHTML=`${front}<span class="result-unit">PSI</span><br><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;color:#666">${bf} bar</span>`;
-  document.getElementById('p-rear').innerHTML=`${rear}<span class="result-unit">PSI</span><br><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;color:#666">${br} bar</span>`;
+  document.getElementById('p-front').innerHTML=`${front}<span class="result-unit">PSI</span><br><span style="font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--muted)">${bf} bar</span>`;
+  document.getElementById('p-rear').innerHTML=`${rear}<span class="result-unit">PSI</span><br><span style="font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--muted)">${br} bar</span>`;
   let note=`Based on ${Math.round(rider)} kg rider + ${Math.round(bikeKg)} kg bike = ${Math.round(total)} kg total. `;
   if (ttype==='tubeless') note+='Tubeless pressure reduced ~15% for better grip. ';
   note+='Fine-tune ±3 PSI based on feel.';
@@ -618,7 +618,7 @@ function calcSealant() {
   let html='';
   brands.forEach(b=>{
     const oz=(b.per/29.574).toFixed(1);
-    html+=`<div class="brand-card ${b.highlight?'highlight':''}"><div class="brand-name">${b.name}</div><div class="brand-amount">${b.per}<span class="result-unit">ml</span> <span style="color:#666;font-size:0.72rem">(${oz} oz)</span></div><div class="brand-note">${b.note}</div></div>`;
+    html+=`<div class="brand-card ${b.highlight?'highlight':''}"><div class="brand-name">${b.name}</div><div class="brand-amount">${b.per}<span class="result-unit">ml</span> <span style="color:var(--muted);font-size:0.72rem">(${oz} oz)</span></div><div class="brand-note">${b.note}</div></div>`;
   });
   document.getElementById('sl-brands').innerHTML=html;
   document.getElementById('sl-total-row').innerHTML=count>1?`Full bike (Stan's example): <strong style="color:var(--accent)">${stans*count} ml</strong> — multiply each brand's per-tire amount × 2.`:'';
