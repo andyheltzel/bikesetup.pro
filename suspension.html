@@ -3,63 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suspension Setup Calculator — Fox &amp; RockShox Fork &amp; Shock | BikeSetup.Pro</title>
-<meta name="description" content="Free mountain bike suspension calculator for Fox and RockShox forks and shocks. Get starting air pressure, sag targets, rebound clicks, and compression settings for Pike, Lyrik, Zeb, BoXXer, Fox 34, 36, 38, and rear shocks by rider weight.">
+<title>MTB Suspension Calculator — Fox & RockShox | BikeSetup.Pro</title>
+<meta name="description" content="Free MTB suspension calculator for Fox and RockShox. Air pressure, sag targets, rebound, and compression by rider weight. Covers Pike, Lyrik, Zeb, Float, DPX2.">
 <link rel="stylesheet" href="style.css">
 <style>
-.brand-tabs{display:flex;gap:0;margin-bottom:24px;border:2px solid #e8000d;border-radius:4px;overflow:hidden}
-.brand-tab{flex:1;padding:10px 16px;background:transparent;border:none;color:#666;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s;border-right:1px solid #e8000d}
+.brand-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:12px;overflow:hidden;backdrop-filter:blur(12px)}
+.brand-tab{flex:1;padding:10px 16px;background:var(--glass);border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:background .15s,color .15s;border-right:1px solid var(--border)}
 .brand-tab:last-child{border-right:none}
-.brand-tab:hover{background:#ffeaea;color:#e8000d}
-.brand-tab.active{background:#e8000d;color:#fff}
+.brand-tab:hover{background:var(--mist-hover);color:var(--text)}
+.brand-tab.active{background:var(--moss);color:var(--text)}
 .fork-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
 @media(max-width:680px){.fork-row{grid-template-columns:1fr 1fr}}
 .damping-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
 @media(max-width:680px){.damping-grid{grid-template-columns:1fr 1fr}}
-.dcell{background:#f8f8f8;border:1px solid #ddd;border-radius:4px;padding:10px 12px;text-align:center}
-.dcell .cl{font-size:10px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:4px}
-.dcell .cv{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#222;line-height:1}
-.dcell .cu{font-size:10px;color:#888;font-family:'Barlow',sans-serif}
-.dcell.hl{border-color:#e8000d;background:#fff8f8}
-.dcell.hl .cv{color:#e8000d}
-.sag-visual{margin:16px 0 4px;background:#f0f0f0;border-radius:4px;height:18px;position:relative;overflow:hidden}
-.sag-bar{height:100%;background:linear-gradient(90deg,#0057a8,#e8000d);border-radius:4px;transition:width .5s ease;width:0%}
-.sag-lbl{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:700;color:#fff;mix-blend-mode:difference}
-.warn{background:#fffbe6;border:1px solid #f0b400;border-radius:4px;padding:10px 14px;font-size:13px;color:#7a5f00;margin-top:14px;display:none}
+.dcell{background:rgba(20,32,16,.6);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;backdrop-filter:blur(8px)}
+.dcell .cl{font-size:10px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:4px}
+.dcell .cv{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);line-height:1}
+.dcell .cu{font-size:10px;color:var(--faint);font-family:'DM Sans',sans-serif}
+.dcell.hl{border-color:rgba(138,170,106,.4);background:rgba(78,102,64,.2)}
+.dcell.hl .cv{color:var(--lichen)}
+.sag-visual{margin:16px 0 4px;background:rgba(20,32,16,.6);border:1px solid var(--border);border-radius:8px;height:18px;position:relative;overflow:hidden}
+.sag-bar{height:100%;background:linear-gradient(90deg,var(--moss),var(--lichen));border-radius:8px;transition:width .5s ease;width:0%}
+.sag-lbl{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:11px;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--text);mix-blend-mode:normal}
+.warn{background:rgba(196,98,58,.1);border:1px solid rgba(196,98,58,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--muted);margin-top:14px;display:none}
 .warn.vis{display:block}
 .svc-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
-.svc-table th{background:#111;color:#fff;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:8px 10px;text-align:left;font-size:12px}
-.svc-table td{padding:8px 10px;border-bottom:1px solid #eee;color:#333;font-family:'Barlow',sans-serif}
-.svc-table tr:hover td{background:#fafafa}
+.svc-table th{background:rgba(30,48,22,.8);color:var(--text);font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:8px 10px;text-align:left;font-size:11px;border-bottom:1px solid var(--border)}
+.svc-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif}
+.svc-table tr:hover td{background:var(--mist)}
 .svc-table tr:last-child td{border-bottom:none}
-.tune-tip{background:#f5f9ff;border-left:3px solid #0057a8;padding:10px 14px;font-size:13px;color:#333;font-family:'Barlow',sans-serif;line-height:1.5;margin-top:12px;border-radius:0 4px 4px 0}
-.tune-tip strong{color:#0057a8}
-.app-callout{background:#fff8f8;border:1px solid #ffd0d0;border-radius:4px;padding:12px 16px;margin-top:16px;font-size:13px;font-family:'Barlow',sans-serif;color:#555}
-.app-callout a{color:#e8000d;font-weight:600}
+.tune-tip{background:rgba(78,102,64,.12);border-left:3px solid var(--ochre);padding:10px 14px;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;line-height:1.55;margin-top:12px;border-radius:0 10px 10px 0}
+.tune-tip strong{color:var(--ochre-light)}
+.app-callout{background:rgba(138,170,106,.07);border:1px solid rgba(138,170,106,.2);border-radius:10px;padding:12px 16px;margin-top:16px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--muted)}
+.app-callout a{color:var(--lichen);font-weight:600}
 .sub-panel{display:none}
 .sub-panel.active{display:block}
-.result-box{background:#fff;border:2px solid #111;border-radius:4px;padding:20px 22px;margin-top:20px;display:none}
+.result-box{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-top:20px;display:none;backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 var(--shine)}
 .result-box.vis{display:block}
-.rlabel{font-size:11px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:#999;margin-bottom:3px}
-.rnum{font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:1;color:#111}
-.runit{font-family:'Barlow',sans-serif;font-size:15px;color:#888;margin-left:4px}
-.rnote{margin-top:10px;font-size:13px;color:#555;font-family:'Barlow',sans-serif;line-height:1.5;border-top:1px solid #eee;padding-top:10px}
+.rlabel{font-size:11px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:3px}
+.rnum{font-family:'Playfair Display',serif;font-size:42px;line-height:1;color:var(--lichen)}
+.runit{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--faint);margin-left:4px}
+.rnote{margin-top:10px;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;line-height:1.55;border-top:1px solid var(--border);padding-top:10px}
 .big-row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px}
-.fl{font-size:11px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.07em;color:#888;margin-bottom:4px}
+.fl{font-size:11px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin-bottom:4px}
 .fg{margin-bottom:14px}
-select,input[type=number]{width:100%;padding:9px 11px;border:1.5px solid #ddd;border-radius:4px;font-family:'Barlow',sans-serif;font-size:14px;background:#fff;color:#222;transition:border-color .15s;box-sizing:border-box}
-select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
-.cbtn{background:#e8000d;color:#fff;border:none;padding:12px 28px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.08em;border-radius:3px;cursor:pointer;transition:background .15s;margin-top:4px}
-.cbtn:hover{background:#b8000a}
-.sec-div{border:none;border-top:2px solid #f0f0f0;margin:28px 0}
-.unit-toast{position:fixed;bottom:20px;right:20px;background:#111;color:#fff;font-family:'Barlow',sans-serif;font-size:13px;padding:10px 16px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none}
+select,input[type=number]{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;background:rgba(20,30,15,.6);color:var(--text);transition:border-color .15s;box-sizing:border-box;backdrop-filter:blur(8px)}
+select:focus,input[type=number]:focus{outline:none;border-color:var(--lichen)}
+.cbtn{background:linear-gradient(135deg,var(--fern),var(--moss));color:var(--text);border:1px solid rgba(110,145,80,.4);padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;letter-spacing:.04em;border-radius:100px;cursor:pointer;transition:transform .15s,box-shadow .15s;margin-top:4px;box-shadow:0 0 20px rgba(70,110,45,.3)}
+.cbtn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(70,120,45,.4)}
+.sec-div{border:none;border-top:1px solid var(--border);margin:28px 0}
+.unit-toast{position:fixed;bottom:20px;right:20px;background:rgba(10,16,8,.95);backdrop-filter:blur(20px);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:10px 16px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.5);display:flex;align-items:center;gap:10px;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none}
 .unit-toast.show{opacity:1;transform:translateY(0);pointer-events:auto}
 .unit-toast-flag{font-size:18px;line-height:1}
 .unit-toast-text{line-height:1.4}
-.unit-toast-text strong{color:#fff;display:block;margin-bottom:2px}
-.unit-toast-text span{color:#aaa;font-size:12px}
-.unit-toast-close{margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:16px;padding:0;line-height:1}
-.unit-toast-close:hover{color:#fff}
+.unit-toast-text strong{color:var(--text);display:block;margin-bottom:2px}
+.unit-toast-text span{color:var(--faint);font-size:12px}
+.unit-toast-close{margin-left:8px;background:none;border:none;color:var(--faint);cursor:pointer;font-size:16px;padding:0;line-height:1}
+.unit-toast-close:hover{color:var(--text)}
 </style>
 </head>
 <body>
@@ -90,33 +90,9 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
     </button>
   </nav>
   <div style="padding:12px 10px 0;border-top:1px solid #222;margin-top:8px;">
-    <a href="guides/suspension-setup.html" style="display:block;background:#e8000d;color:#fff;text-align:center;padding:9px 6px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:.06em;border-radius:3px;text-decoration:none;">Read Full Setup Guide</a>
+    <a href="guides/suspension-setup.html" style="display:block;background:var(--lichen);color:var(--text);text-align:center;padding:9px 6px;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.06em;border-radius:3px;text-decoration:none;">Read Full Setup Guide</a>
   </div>
 </aside>
-
-<!-- Mobile tab bar (replaces sidebar on phones) -->
-<div class="mobile-tab-bar" id="susp-mobile-tabs">
-  <button onclick="mobileSwitch('fork',this)" class="active">
-    <svg viewBox="0 0 24 24"><path d="M8 2v16l4 4 4-4V2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
-    Fork
-  </button>
-  <button onclick="mobileSwitch('shock',this)">
-    <svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><rect x="8" y="6" width="8" height="12" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-    Shock
-  </button>
-  <button onclick="mobileSwitch('sag',this)">
-    <svg viewBox="0 0 24 24"><path d="M3 20 L7 8 L12 14 L17 5 L21 20"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
-    Sag
-  </button>
-  <button onclick="mobileSwitch('service',this)">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
-    Service
-  </button>
-  <a href="guides/suspension-setup.html" class="tab-link tab-ext">
-    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-    Guide
-  </a>
-</div>
 
 <main>
 
@@ -280,7 +256,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
         <div class="rlabel">Suggested Starting Air Pressure</div>
         <div class="big-row">
           <div><div class="rnum" id="fork-psi">--</div><span class="runit">PSI</span></div>
-          <div style="font-family:'Barlow',sans-serif;color:#aaa;font-size:20px;align-self:center;">=</div>
+          <div style="font-family:'DM Sans',sans-serif;color:#aaa;font-size:20px;align-self:center;">=</div>
           <div><div class="rnum" id="fork-bar" style="font-size:28px;">--</div><span class="runit">bar</span></div>
         </div>
       </div>
@@ -429,7 +405,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
     <div style="background:#f8f8f8;border-radius:6px;padding:20px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:14px;color:#222;">Measure Sag %</div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:14px;color:#222;">Measure Sag %</div>
       <div class="fg"><div class="fl">Total Travel (mm)</div><input type="number" id="sag-travel" placeholder="e.g. 150" min="50" max="250"></div>
       <div class="fg"><div class="fl">Sag Measurement (mm)</div><input type="number" id="sag-meas" placeholder="e.g. 35" min="0" max="200"></div>
       <button class="cbtn" onclick="calcSagPct()" style="width:100%">Calculate %</button>
@@ -440,7 +416,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       </div>
     </div>
     <div style="background:#f8f8f8;border-radius:6px;padding:20px;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:14px;color:#222;">Target Sag in mm</div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:14px;color:#222;">Target Sag in mm</div>
       <div class="fg"><div class="fl">Total Travel (mm)</div><input type="number" id="sag2-travel" placeholder="e.g. 150" min="50" max="250"></div>
       <div class="fg"><div class="fl">Target Sag %</div>
         <select id="sag2-pct">
@@ -462,8 +438,8 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
     </div>
   </div>
   <hr class="sec-div">
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.04em;margin-bottom:10px;">Sag Reference by Brand &amp; Discipline</div>
-  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="svc-table">
+  <div style="font-family:'Playfair Display',serif;font-size:20px;letter-spacing:.04em;margin-bottom:10px;">Sag Reference by Brand &amp; Discipline</div>
+  <table class="svc-table">
     <thead><tr><th>Brand / Type</th><th>Sag Target</th><th>Notes</th></tr></thead>
     <tbody>
       <tr><td>Fox Fork (all models)</td><td>15–20%</td><td>Official Fox spec. 15% = firm/XC, 20% = plush/enduro. Source: Fox tech.ridefox.com</td></tr>
@@ -475,7 +451,7 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       <tr><td>Coil Shock (any brand)</td><td>25–30%</td><td>Swap spring rate if you cannot reach target range within 5 turns of preload</td></tr>
       <tr><td>DH / Bike Park</td><td>30–35%</td><td>More sag = more travel in use = better absorption on big hits and landings</td></tr>
     </tbody>
-  </table></div>
+  </table>
 </div>
 
 <!-- SERVICE INTERVALS -->
@@ -486,8 +462,8 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
     <div class="panel-desc">A perfectly-tuned fork feels terrible if the seals are dry or the oil has degraded. These are official service intervals from Fox and RockShox documentation. Reduce intervals by 30–50% for very wet, muddy, or dusty conditions, or if you do lift-accessed DH or bike park riding.</div>
   </div>
 
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Fox Suspension — Official Intervals</div>
-  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="svc-table">
+  <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Fox Suspension — Official Intervals</div>
+  <table class="svc-table">
     <thead><tr><th>Service</th><th>Interval</th><th>What It Covers</th></tr></thead>
     <tbody>
       <tr><td>Lower Leg Service (fork)</td><td>50 hrs or annually</td><td>Drain and replace lower leg oil, clean and re-lube dust wipers and foam rings</td></tr>
@@ -496,10 +472,10 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       <tr><td>Rear Shock — basic</td><td>100 hrs</td><td>Wipe seals, inspect for leaks, check and top up air pressure</td></tr>
       <tr><td>Rear Shock — full service</td><td>200 hrs</td><td>Rebuild damper, replace all seals and oil, inspect IFP</td></tr>
     </tbody>
-  </table></div>
+  </table>
 
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin:20px 0 8px;">RockShox Suspension — Official Intervals</div>
-  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="svc-table">
+  <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin:20px 0 8px;">RockShox Suspension — Official Intervals</div>
+  <table class="svc-table">
     <thead><tr><th>Service</th><th>Interval</th><th>What It Covers</th></tr></thead>
     <tbody>
       <tr><td>Lower Leg Service (fork)</td><td>50 hrs or annually</td><td>Drain lower leg oil, clean seals, lubricate with Maxima PLUSH Dynamic Suspension Lube</td></tr>
@@ -508,12 +484,12 @@ select:focus,input[type=number]:focus{outline:none;border-color:#e8000d}
       <tr><td>Rear Shock — basic</td><td>100 hrs</td><td>Clean and lube seals, inspect air can, re-check sag</td></tr>
       <tr><td>Rear Shock — full service</td><td>200 hrs</td><td>Full rebuild: IFP, can seals, main piston seals, fresh oil</td></tr>
     </tbody>
-  </table></div>
+  </table>
 
   <div class="tune-tip" style="margin-top:16px;"><strong>Pro tip:</strong> A basic lower leg service takes about 30 minutes and transforms small-bump sensitivity. It is the single highest-impact DIY maintenance you can do on any suspension fork. Track hours via your GPS computer — most Garmin and Wahoo units display total ride time.</div>
 
   <hr class="sec-div">
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Service Interval Estimator</div>
+  <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Service Interval Estimator</div>
   <div class="fork-row" style="max-width:400px;">
     <div class="fg"><div class="fl">Avg Ride Duration (hrs)</div><input type="number" id="srv-dur" placeholder="2" min="0.5" max="10" step="0.5"></div>
     <div class="fg"><div class="fl">Rides Per Week</div><input type="number" id="srv-rides" placeholder="3" min="1" max="14"></div>
@@ -564,12 +540,9 @@ function selShockBrand(b,btn){
 }
 function switchSub(id,btn){
   document.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.sidebar nav button, #susp-mobile-tabs button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav button').forEach(b=>b.classList.remove('active'));
   document.getElementById('sub-'+id).classList.add('active');
   btn.classList.add('active');
-}
-function mobileSwitch(id,btn){
-  switchSub(id,btn);
 }
 
 // Travel map

@@ -87,59 +87,74 @@ function buildNav(activePage, activeSubPage) {
   }
 
   // ── WHEELS & TIRES ──
-  var wheelsActive = ap === 'calculators' || ['pressure','spoke','sealant','build-a-wheel','seat-tubeless','tubeless-conversion','true-a-wheel'].indexOf(asp) > -1;
+  var wheelsActive = ap === 'calculators' || ['pressure','spoke','sealant','build-a-wheel','seat-tubeless','tubeless-conversion','true-a-wheel','flat-repair'].indexOf(asp) > -1;
   var wheelsDropdown =
     section('Calculators',
-      link('/calculators.html#pressure',            'Tire Pressure',         'Calc', 'pressure') +
-      link('/calculators.html#spoke',               'Spoke Tension',         'Calc', 'spoke') +
-      link('/calculators.html#sealant',             'Tubeless Sealant',      'Calc', 'sealant')
+      link('/calculators.html#pressure',            'Tire Pressure',         'Calc',  'pressure') +
+      link('/calculators.html#spoke',               'Spoke Tension',         'Calc',  'spoke') +
+      link('/calculators.html#sealant',             'Tubeless Sealant',      'Calc',  'sealant')
     ) +
     section('Guides',
+      link('/guides/flat-repair.html',              'Fix a Flat Tyre',       'Guide', 'flat-repair') +
+      link('/guides/true-a-wheel.html',             'True a Wheel',          'Guide', 'true-a-wheel') +
       link('/guides/build-a-wheel.html',            'Build a Wheel',         'Guide', 'build-a-wheel') +
-      link('/guides/seat-tubeless-tire.html',       'Seat a Tubeless Tire',  'Guide', 'seat-tubeless') +
       link('/guides/tubeless-conversion.html',      'Tubeless Conversion',   'Guide', 'tubeless-conversion') +
-      link('/guides/true-a-wheel.html',             'True a Wheel',          'Guide', 'true-a-wheel')
+      link('/guides/seat-tubeless-tire.html',       'Seat a Tubeless Tire',  'Guide', 'seat-tubeless')
+    );
+
+  // ── DRIVETRAIN ──
+  var driveActive = ['gear','speed','chain-cleaning','chain-replacement','derailleur-adjustment','front-derailleur','cable-replacement','creak-diagnosis','wash-your-bike'].indexOf(asp) > -1;
+  var driveDropdown =
+    section('Calculators',
+      link('/calculators.html#gear',                'Gear Ratio',            'Calc',  'gear') +
+      link('/calculators.html#speed',               'Speed & Cadence',       'Calc',  'speed')
+    ) +
+    section('Guides',
+      link('/guides/chain-cleaning.html',           'Chain Cleaning & Lube', 'Guide', 'chain-cleaning') +
+      link('/guides/chain-replacement.html',        'Chain Replacement',     'Guide', 'chain-replacement') +
+      link('/guides/derailleur-adjustment.html',    'Rear Derailleur',       'Guide', 'derailleur-adjustment') +
+      link('/guides/front-derailleur.html',         'Front Derailleur',      'Guide', 'front-derailleur') +
+      link('/guides/cable-replacement.html',        'Cable Replacement',     'Guide', 'cable-replacement') +
+      link('/guides/creak-diagnosis.html',          'Fix a Creak',           'Guide', 'creak-diagnosis') +
+      link('/guides/wash-your-bike.html',           'Wash Your Bike',        'Guide', 'wash-your-bike')
     );
 
   // ── SUSPENSION ──
   var suspActive = ap === 'suspension' || ['fork-setup','shock-setup','sag','suspension-setup'].indexOf(asp) > -1;
   var suspDropdown =
     section('Calculators',
-      link('/suspension.html#fork',    'Fork Setup',              'Calc', 'fork-setup') +
-      link('/suspension.html#shock',   'Rear Shock Setup',        'Calc', 'shock-setup') +
-      link('/suspension.html#sag',     'Sag Calculator',          'Calc', 'sag') +
-      link('/suspension.html#service', 'Service Intervals',       'Calc', 'service')
+      link('/suspension.html#fork',                 'Fork Setup',            'Calc',  'fork-setup') +
+      link('/suspension.html#shock',                'Rear Shock Setup',      'Calc',  'shock-setup') +
+      link('/suspension.html#sag',                  'Sag Calculator',        'Calc',  'sag') +
+      link('/suspension.html#service',              'Service Intervals',     'Calc',  'service')
     ) +
     section('Guides',
-      link('/guides/suspension-setup.html', 'MTB Suspension Setup', 'Guide', 'suspension-setup')
+      link('/guides/suspension-setup.html',         'MTB Suspension Setup',  'Guide', 'suspension-setup')
     );
 
-  // ── FITNESS & PERFORMANCE ──
-  var fitActive = ['gear','speed','power','climbing','fit-basics'].indexOf(asp) > -1;
+  // ── FIT & BRAKES ──
+  var fitActive = ['power','climbing','fit-basics','saddle-seatpost-setup','headset-stem','set-up-brakes'].indexOf(asp) > -1;
   var fitDropdown =
     section('Calculators',
-      link('/calculators.html#gear',     'Gear Ratio',            'Calc', 'gear') +
-      link('/calculators.html#speed',    'Speed & Cadence',       'Calc', 'speed') +
-      link('/calculators.html#power',    'Power & Watts',         'Calc', 'power') +
-      link('/calculators.html#climbing', 'Climbing & VAM',        'Calc', 'climbing')
+      link('/calculators.html#power',               'Power & Watts',         'Calc',  'power') +
+      link('/calculators.html#climbing',            'Climbing & VAM',        'Calc',  'climbing')
     ) +
-    section('Guides',
-      link('/guides/fit-basics.html',    'Bike Fit Basics',       'Guide', 'fit-basics')
-    );
-
-  // ── BRAKES ──
-  var brakesActive = ['set-up-brakes'].indexOf(asp) > -1;
-  var brakesDropdown =
-    section('Guides',
-      link('/guides/set-up-brakes.html', 'Disc Brake Bleed & Alignment', 'Guide', 'set-up-brakes')
+    section('Fit Guides',
+      link('/guides/fit-basics.html',               'Bike Fit Basics',       'Guide', 'fit-basics') +
+      link('/guides/saddle-seatpost-setup.html',    'Saddle & Seatpost',     'Guide', 'saddle-seatpost-setup') +
+      link('/guides/headset-stem.html',             'Headset & Stem',        'Guide', 'headset-stem')
+    ) +
+    section('Brakes',
+      link('/guides/set-up-brakes.html',            'Disc Brake Bleed & Alignment', 'Guide', 'set-up-brakes')
     );
 
   return (
     '<a href="/index.html"' + (ap === 'home' ? ' class="active"' : '') + ' style="color:' + (ap==='home'?'#fff':'#888') + ';text-decoration:none;font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .7rem;border-radius:3px;transition:color .15s,background .15s;white-space:nowrap" onmouseover="this.style.color=\'#fff\';this.style.background=\'rgba(255,255,255,0.06)\'" onmouseout="this.style.color=\'' + (ap==='home'?'#fff':'#888') + '\';this.style.background=\'\'">Home</a>' +
     navItem('Wheels &amp; Tires', wheelsDropdown, wheelsActive) +
+    navItem('Drivetrain',         driveDropdown,  driveActive) +
     navItem('Suspension',         suspDropdown,   suspActive) +
-    navItem('Fitness &amp; Performance', fitDropdown, fitActive) +
-    navItem('Brakes',             brakesDropdown, brakesActive) +
+    navItem('Fit &amp; Brakes',   fitDropdown,    fitActive) +
+    '<a href="/guides/index.html" class="btn-nav" style="background:rgba(255,255,255,0.1);color:#fff;padding:.45rem 1.1rem;margin-left:.4rem;border-radius:3px;text-decoration:none;font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">All Guides</a>' +
     '<a href="/calculators.html" class="btn-nav" style="background:#e8000d;color:#fff;padding:.45rem 1.1rem;margin-left:.4rem;border-radius:3px;text-decoration:none;font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap">All Calculators</a>'
   );
 }

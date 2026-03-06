@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bike Calculators — Tire Pressure, Gear Ratio, Power & More | BikeSetup.Pro</title>
-<meta name="description" content="Free online bike calculators: tire pressure by rider weight and tire width (PSI and bar), spoke tension kgf ranges, tubeless sealant volume for Stan's NoTubes, Muc-Off, Orange Seal and more, gear ratio and development, speed from cadence and gearing, watts and power output, and climbing VAM. Works for road, gravel, MTB, and track bikes.">
+<title>Bike Calculators — Tire Pressure, Gear Ratio & More</title>
+<meta name="description" content="Free bike calculators: tire pressure by weight, spoke tension, tubeless sealant, gear ratio, speed from cadence, watts, and climbing VAM. Road, gravel, and MTB.">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -54,46 +54,6 @@
       </a>
     </nav>
   </aside>
-
-<!-- Mobile tab bar (replaces sidebar on phones) -->
-<div class="mobile-tab-bar" id="calc-mobile-tabs">
-  <button onclick="mobileCalcTab('pressure',this)" class="active">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.5"/><line x1="12" y1="3" x2="12" y2="8.5"/><line x1="12" y1="15.5" x2="12" y2="21"/></svg>
-    Pressure
-  </button>
-  <button onclick="mobileCalcTab('spoke',this)">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="3" x2="12" y2="10"/><line x1="12" y1="14" x2="12" y2="21"/></svg>
-    Spoke
-  </button>
-  <button onclick="mobileCalcTab('sealant',this)">
-    <svg viewBox="0 0 24 24"><path d="M12 2C12 2 5 10 5 15a7 7 0 0 0 14 0C19 10 12 2 12 2z"/></svg>
-    Sealant
-  </button>
-  <div class="tab-divider"></div>
-  <button onclick="mobileCalcTab('gear',this)">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>
-    Gear
-  </button>
-  <button onclick="mobileCalcTab('speed',this)">
-    <svg viewBox="0 0 24 24"><path d="M12 21A9 9 0 1 1 21 12"/><line x1="12" y1="12" x2="18.5" y2="7" stroke-width="2"/></svg>
-    Speed
-  </button>
-  <button onclick="mobileCalcTab('power',this)">
-    <svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
-    Power
-  </button>
-  <button onclick="mobileCalcTab('climbing',this)">
-    <svg viewBox="0 0 24 24"><polyline points="2,20 9,8 14,14 18,9 22,20"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-    Climb
-  </button>
-  <div class="tab-divider"></div>
-  <a href="/suspension.html" class="tab-link tab-ext">
-    <svg viewBox="0 0 24 24"><path d="M8 2v16l4 4 4-4V2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
-    Susp
-  </a>
-</div>
-
-
 
   <main>
 
@@ -290,7 +250,7 @@
       <div id="result-spoke" class="result-box">
         <div class="result-label">Target Tension Range</div>
         <div class="result-value" id="s-val">—</div>
-        <div id="s-nm" style="margin-top:0.3rem;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;letter-spacing:0.05em;color:#666;"></div>
+        <div id="s-nm" style="margin-top:0.3rem;font-family:'DM Sans',sans-serif;font-size:0.9rem;letter-spacing:0.05em;color:var(--muted);"></div>
         <div id="s-note" class="result-note"></div>
       </div>
     </div>
@@ -343,7 +303,7 @@
           <div class="brand-header">Recommended amount by brand (per tire)</div>
           <div class="brand-grid" id="sl-brands"></div>
         </div>
-        <div id="sl-total-row" style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid #333;font-family:'Barlow Condensed',sans-serif;font-size:0.82rem;letter-spacing:0.05em;color:#888;"></div>
+        <div id="sl-total-row" style="margin-top:1rem;padding-top:0.8rem;border-top:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.82rem;letter-spacing:0.05em;color:var(--faint);"></div>
         <div id="sl-note" class="result-note"></div>
       </div>
     </div>
@@ -534,14 +494,11 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── TAB SWITCH ──
 function switchTab(id, btn) {
   document.querySelectorAll('.calc-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.sidebar nav button, #calc-mobile-tabs button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav button').forEach(b => b.classList.remove('active'));
   document.getElementById('panel-' + id).classList.add('active');
   if (btn) btn.classList.add('active');
   history.replaceState(null,'','#'+id);
   window.scrollTo(0,0);
-}
-function mobileCalcTab(id, btn) {
-  switchTab(id, btn);
 }
 
 // ── UNIT STATE ──
@@ -607,8 +564,8 @@ function calcPressure() {
   let front=Math.max(lo,Math.min(hi,Math.round((fL/width)*k*tf*10)/10));
   let rear =Math.max(lo,Math.min(hi,Math.round((rL/width)*k*tf*10)/10));
   const bf=(front/14.504).toFixed(2), br=(rear/14.504).toFixed(2);
-  document.getElementById('p-front').innerHTML=`${front}<span class="result-unit">PSI</span><br><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;color:#666">${bf} bar</span>`;
-  document.getElementById('p-rear').innerHTML=`${rear}<span class="result-unit">PSI</span><br><span style="font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;color:#666">${br} bar</span>`;
+  document.getElementById('p-front').innerHTML=`${front}<span class="result-unit">PSI</span><br><span style="font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--muted)">${bf} bar</span>`;
+  document.getElementById('p-rear').innerHTML=`${rear}<span class="result-unit">PSI</span><br><span style="font-family:'DM Sans',sans-serif;font-size:0.9rem;color:var(--muted)">${br} bar</span>`;
   let note=`Based on ${Math.round(rider)} kg rider + ${Math.round(bikeKg)} kg bike = ${Math.round(total)} kg total. `;
   if (ttype==='tubeless') note+='Tubeless pressure reduced ~15% for better grip. ';
   note+='Fine-tune ±3 PSI based on feel.';
@@ -661,7 +618,7 @@ function calcSealant() {
   let html='';
   brands.forEach(b=>{
     const oz=(b.per/29.574).toFixed(1);
-    html+=`<div class="brand-card ${b.highlight?'highlight':''}"><div class="brand-name">${b.name}</div><div class="brand-amount">${b.per}<span class="result-unit">ml</span> <span style="color:#666;font-size:0.72rem">(${oz} oz)</span></div><div class="brand-note">${b.note}</div></div>`;
+    html+=`<div class="brand-card ${b.highlight?'highlight':''}"><div class="brand-name">${b.name}</div><div class="brand-amount">${b.per}<span class="result-unit">ml</span> <span style="color:var(--muted);font-size:0.72rem">(${oz} oz)</span></div><div class="brand-note">${b.note}</div></div>`;
   });
   document.getElementById('sl-brands').innerHTML=html;
   document.getElementById('sl-total-row').innerHTML=count>1?`Full bike (Stan's example): <strong style="color:var(--accent)">${stans*count} ml</strong> — multiply each brand's per-tire amount × 2.`:'';
