@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTB Suspension Calculator — Fox & RockShox | BikeSetup.Pro</title>
+<meta name="description" content="Free MTB suspension calculator for Fox and RockShox. Air pressure, sag targets, rebound, and compression by rider weight. Covers Pike, Lyrik, Zeb, Float, DPX2.">
+<link rel="stylesheet" href="style.css">
+<style>
+.brand-tabs{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:12px;overflow:hidden;backdrop-filter:blur(12px)}
+.brand-tab{flex:1;padding:10px 16px;background:var(--glass);border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:background .15s,color .15s;border-right:1px solid var(--border)}
+.brand-tab:last-child{border-right:none}
+.brand-tab:hover{background:var(--mist-hover);color:var(--text)}
+.brand-tab.active{background:var(--moss);color:var(--text)}
+.fork-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
+@media(max-width:680px){.fork-row{grid-template-columns:1fr 1fr}}
+.damping-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+@media(max-width:680px){.damping-grid{grid-template-columns:1fr 1fr}}
+.dcell{background:rgba(20,32,16,.6);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;backdrop-filter:blur(8px)}
+.dcell .cl{font-size:10px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:4px}
+.dcell .cv{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);line-height:1}
+.dcell .cu{font-size:10px;color:var(--faint);font-family:'DM Sans',sans-serif}
+.dcell.hl{border-color:rgba(138,170,106,.4);background:rgba(78,102,64,.2)}
+.dcell.hl .cv{color:var(--lichen)}
+.sag-visual{margin:16px 0 4px;background:rgba(20,32,16,.6);border:1px solid var(--border);border-radius:8px;height:18px;position:relative;overflow:hidden}
+.sag-bar{height:100%;background:linear-gradient(90deg,var(--moss),var(--lichen));border-radius:8px;transition:width .5s ease;width:0%}
+.sag-lbl{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:11px;font-family:'DM Sans',sans-serif;font-weight:700;color:var(--text);mix-blend-mode:normal}
+.warn{background:rgba(196,98,58,.1);border:1px solid rgba(196,98,58,.3);border-radius:10px;padding:10px 14px;font-size:13px;color:var(--muted);margin-top:14px;display:none}
+.warn.vis{display:block}
+.svc-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px}
+.svc-table th{background:rgba(30,48,22,.8);color:var(--text);font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:8px 10px;text-align:left;font-size:11px;border-bottom:1px solid var(--border)}
+.svc-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--muted);font-family:'DM Sans',sans-serif}
+.svc-table tr:hover td{background:var(--mist)}
+.svc-table tr:last-child td{border-bottom:none}
+.tune-tip{background:rgba(78,102,64,.12);border-left:3px solid var(--ochre);padding:10px 14px;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;line-height:1.55;margin-top:12px;border-radius:0 10px 10px 0}
+.tune-tip strong{color:var(--ochre-light)}
+.app-callout{background:rgba(138,170,106,.07);border:1px solid rgba(138,170,106,.2);border-radius:10px;padding:12px 16px;margin-top:16px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--muted)}
+.app-callout a{color:var(--lichen);font-weight:600}
+.sub-panel{display:none}
+.sub-panel.active{display:block}
+.result-box{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-top:20px;display:none;backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 var(--shine)}
+.result-box.vis{display:block}
+.rlabel{font-size:11px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.1em;color:var(--faint);margin-bottom:3px}
+.rnum{font-family:'Playfair Display',serif;font-size:42px;line-height:1;color:var(--lichen)}
+.runit{font-family:'DM Sans',sans-serif;font-size:14px;color:var(--faint);margin-left:4px}
+.rnote{margin-top:10px;font-size:13px;color:var(--muted);font-family:'DM Sans',sans-serif;line-height:1.55;border-top:1px solid var(--border);padding-top:10px}
+.big-row{display:flex;gap:20px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px}
+.fl{font-size:11px;font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin-bottom:4px}
+.fg{margin-bottom:14px}
+select,input[type=number]{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;background:rgba(20,30,15,.6);color:var(--text);transition:border-color .15s;box-sizing:border-box;backdrop-filter:blur(8px)}
+select:focus,input[type=number]:focus{outline:none;border-color:var(--lichen)}
+.cbtn{background:linear-gradient(135deg,var(--fern),var(--moss));color:var(--text);border:1px solid rgba(110,145,80,.4);padding:12px 28px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;letter-spacing:.04em;border-radius:100px;cursor:pointer;transition:transform .15s,box-shadow .15s;margin-top:4px;box-shadow:0 0 20px rgba(70,110,45,.3)}
+.cbtn:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(70,120,45,.4)}
+.sec-div{border:none;border-top:1px solid var(--border);margin:28px 0}
+.unit-toast{position:fixed;bottom:20px;right:20px;background:rgba(10,16,8,.95);backdrop-filter:blur(20px);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:10px 16px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.5);display:flex;align-items:center;gap:10px;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none}
+.unit-toast.show{opacity:1;transform:translateY(0);pointer-events:auto}
+.unit-toast-flag{font-size:18px;line-height:1}
+.unit-toast-text{line-height:1.4}
+.unit-toast-text strong{color:var(--text);display:block;margin-bottom:2px}
+.unit-toast-text span{color:var(--faint);font-size:12px}
+.unit-toast-close{margin-left:8px;background:none;border:none;color:var(--faint);cursor:pointer;font-size:16px;padding:0;line-height:1}
+.unit-toast-close:hover{color:var(--text)}
+</style>
+</head>
+<body>
+<div class="checker-band"></div>
+<header class="site-header" id="site-header"></header>
+<div class="page-body">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-label">Suspension</div>
+  <nav>
+    <button onclick="switchSub('fork',this)" data-tab="fork" class="active">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M8 2v16l4 4 4-4V2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="14" x2="16" y2="14"/></svg></span>
+      <span class="nav-text">Fork Setup<span class="nav-sub">Air pressure &amp; sag</span></span>
+    </button>
+    <button onclick="switchSub('shock',this)" data-tab="shock">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><rect x="8" y="6" width="8" height="12" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+      <span class="nav-text">Rear Shock<span class="nav-sub">Air &amp; coil setup</span></span>
+    </button>
+    <button onclick="switchSub('sag',this)" data-tab="sag">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 20 L7 8 L12 14 L17 5 L21 20"/><line x1="3" y1="20" x2="21" y2="20"/></svg></span>
+      <span class="nav-text">Sag Calculator<span class="nav-sub">Measure &amp; convert %</span></span>
+    </button>
+    <div class="sidebar-divider"></div>
+    <button onclick="switchSub('service',this)" data-tab="service">
+      <span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg></span>
+      <span class="nav-text">Service Intervals<span class="nav-sub">Maintenance schedule</span></span>
+    </button>
+  </nav>
+  <div style="padding:12px 10px 0;border-top:1px solid #222;margin-top:8px;">
+    <a href="guides/suspension-setup.html" style="display:block;background:var(--lichen);color:var(--text);text-align:center;padding:9px 6px;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.06em;border-radius:3px;text-decoration:none;">Read Full Setup Guide</a>
+  </div>
+</aside>
+
+<main>
+
+<!-- FORK SETUP -->
+<div id="sub-fork" class="sub-panel active">
+  <div class="panel-header">
+    <div class="panel-tag">Suspension</div>
+    <div class="panel-title">Fork Setup Calculator</div>
+    <div class="panel-desc">Get starting air pressure, sag target, rebound clicks, and compression settings for your Fox or RockShox fork. Values are derived from official manufacturer documentation. Treat them as a starting point and fine-tune by feel on your home trail.</div>
+  </div>
+
+  <div class="brand-tabs">
+    <button class="brand-tab active" onclick="selBrand('fox',this)">Fox Racing Shox</button>
+    <button class="brand-tab" onclick="selBrand('rockshox',this)">RockShox</button>
+  </div>
+
+  <!-- FOX FORK FORM -->
+  <div id="fork-fox">
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Fork Model</div>
+        <select id="fox-model" onchange="updateFoxTravel()">
+          <option value="">Select fork...</option>
+          <optgroup label="XC / Trail (32-34mm)">
+            <option value="fox32">Fox 32 FLOAT (XC)</option>
+            <option value="fox32sc">Fox 32 Step-Cast</option>
+            <option value="fox34">Fox 34 FLOAT (Trail)</option>
+            <option value="fox34sc">Fox 34 Step-Cast</option>
+          </optgroup>
+          <optgroup label="Trail / Enduro (36mm)">
+            <option value="fox36">Fox 36 FLOAT</option>
+          </optgroup>
+          <optgroup label="Enduro / DH (38mm)">
+            <option value="fox38">Fox 38 FLOAT</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fg"><div class="fl">Damper</div>
+        <select id="fox-damper">
+          <option value="grip">GRIP (single compression)</option>
+          <option value="gripsl">GRIP SL (lockout)</option>
+          <option value="gripx">GRIP X (2-pos compression)</option>
+          <option value="gripx2">GRIP X2 (HSC + LSC)</option>
+          <option value="grip2">GRIP 2 (HSC + LSC)</option>
+          <option value="fit4">FIT4</option>
+        </select>
+      </div>
+      <div class="fg"><div class="fl">Travel (mm)</div>
+        <select id="fox-travel">
+          <option value="100">100mm</option><option value="110">110mm</option>
+          <option value="120">120mm</option><option value="130" selected>130mm</option>
+          <option value="140">140mm</option><option value="150">150mm</option>
+          <option value="160">160mm</option><option value="170">170mm</option>
+          <option value="180">180mm</option>
+        </select>
+      </div>
+    </div>
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Rider Weight (with gear)</div>
+        <input type="number" id="fox-weight" placeholder="e.g. 80" min="40" max="160">
+      </div>
+      <div class="fg"><div class="fl">Unit</div>
+        <select id="fox-unit"><option value="kg">kg</option><option value="lbs">lbs</option></select>
+      </div>
+      <div class="fg"><div class="fl">Riding Style</div>
+        <select id="fox-style">
+          <option value="xc">XC / Cross-Country</option>
+          <option value="trail">Trail / All-Mountain</option>
+          <option value="enduro">Enduro / Aggressive Trail</option>
+          <option value="dh">DH / Bike Park</option>
+        </select>
+      </div>
+    </div>
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Volume Spacers</div>
+        <select id="fox-spacers">
+          <option value="0">0 (stock)</option>
+          <option value="1">1 spacer</option>
+          <option value="2">2 spacers</option>
+          <option value="3">3 spacers</option>
+        </select>
+      </div>
+    </div>
+    <button class="cbtn" onclick="calcFox()">Calculate Fox Settings</button>
+  </div>
+
+  <!-- ROCKSHOX FORK FORM -->
+  <div id="fork-rs" style="display:none">
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Fork Model</div>
+        <select id="rs-model" onchange="updateRSTravel()">
+          <option value="">Select fork...</option>
+          <optgroup label="XC / Gravel">
+            <option value="sid">RockShox SID (XC)</option>
+            <option value="sidsl">SID SL (XC)</option>
+            <option value="reba">Reba</option>
+            <option value="recon">Recon Gold</option>
+          </optgroup>
+          <optgroup label="Trail (35mm)">
+            <option value="pike">Pike (35mm)</option>
+          </optgroup>
+          <optgroup label="Enduro (38mm)">
+            <option value="lyrik">Lyrik (38mm)</option>
+            <option value="zeb">Zeb (38mm)</option>
+            <option value="domain">Domain</option>
+          </optgroup>
+          <optgroup label="DH">
+            <option value="boxxer">BoXXer</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="fg"><div class="fl">Air Spring</div>
+        <select id="rs-spring">
+          <option value="debonairplus">DebonAir+ (2023+)</option>
+          <option value="debonair">DebonAir (pre-2023)</option>
+          <option value="soloair">Solo Air (XC)</option>
+        </select>
+      </div>
+      <div class="fg"><div class="fl">Travel (mm)</div>
+        <select id="rs-travel">
+          <option value="100">100mm</option><option value="110">110mm</option>
+          <option value="120">120mm</option><option value="130" selected>130mm</option>
+          <option value="140">140mm</option><option value="150">150mm</option>
+          <option value="160">160mm</option><option value="170">170mm</option>
+          <option value="180">180mm</option><option value="200">200mm</option>
+        </select>
+      </div>
+    </div>
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Rider Weight (with gear)</div>
+        <input type="number" id="rs-weight" placeholder="e.g. 80" min="40" max="160">
+      </div>
+      <div class="fg"><div class="fl">Unit</div>
+        <select id="rs-unit"><option value="kg">kg</option><option value="lbs">lbs</option></select>
+      </div>
+      <div class="fg"><div class="fl">Riding Style</div>
+        <select id="rs-style">
+          <option value="xc">XC / Cross-Country</option>
+          <option value="trail">Trail / All-Mountain</option>
+          <option value="enduro">Enduro / Aggressive Trail</option>
+          <option value="dh">DH / Bike Park</option>
+        </select>
+      </div>
+    </div>
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Bottomless Tokens</div>
+        <select id="rs-tokens">
+          <option value="0">0 (stock)</option>
+          <option value="1">1 token</option>
+          <option value="2">2 tokens</option>
+          <option value="3">3 tokens</option>
+        </select>
+      </div>
+    </div>
+    <button class="cbtn" onclick="calcRockShox()">Calculate RockShox Settings</button>
+  </div>
+
+  <!-- FORK RESULTS -->
+  <div id="result-fork" class="result-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+      <div>
+        <div class="rlabel">Suggested Starting Air Pressure</div>
+        <div class="big-row">
+          <div><div class="rnum" id="fork-psi">--</div><span class="runit">PSI</span></div>
+          <div style="font-family:'DM Sans',sans-serif;color:#aaa;font-size:20px;align-self:center;">=</div>
+          <div><div class="rnum" id="fork-bar" style="font-size:28px;">--</div><span class="runit">bar</span></div>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div class="rlabel">Sag Target</div>
+        <div class="rnum" id="fork-sag-pct" style="font-size:36px;">--</div><span class="runit">%</span>
+        <div style="font-size:12px;color:#999;margin-top:2px;" id="fork-sag-mm">-- mm</div>
+      </div>
+    </div>
+    <div class="rlabel">Sag Indicator</div>
+    <div class="sag-visual"><div class="sag-bar" id="fork-sag-bar"></div><span class="sag-lbl" id="fork-sag-lbl"></span></div>
+    <div style="margin-top:18px;">
+      <div class="rlabel" style="margin-bottom:8px;">Damping Starting Points</div>
+      <div class="damping-grid">
+        <div class="dcell hl"><div class="cl">Rebound</div><div class="cv" id="fork-rebound">--</div><div class="cu">clicks from closed</div></div>
+        <div class="dcell" id="cell-lsc"><div class="cl">LSC</div><div class="cv" id="fork-lsc">--</div><div class="cu">clicks from closed</div></div>
+        <div class="dcell" id="cell-hsc"><div class="cl">HSC</div><div class="cv" id="fork-hsc">--</div><div class="cu">clicks from closed</div></div>
+        <div class="dcell"><div class="cl">Max PSI</div><div class="cv" id="fork-maxpsi">--</div><div class="cu">do not exceed</div></div>
+      </div>
+    </div>
+    <div class="rnote" id="fork-note"></div>
+    <div class="warn" id="fork-warn"><span id="fork-warn-txt"></span></div>
+    <div class="tune-tip" id="fork-tip"></div>
+    <div class="app-callout" id="fork-app"></div>
+  </div>
+</div>
+
+<!-- REAR SHOCK -->
+<div id="sub-shock" class="sub-panel">
+  <div class="panel-header">
+    <div class="panel-tag">Suspension</div>
+    <div class="panel-title">Rear Shock Setup</div>
+    <div class="panel-desc">Calculate starting air pressure and sag for your rear shock. Rear shock pressure is more frame-dependent than fork pressure because of leverage ratio differences. Always cross-check with your frame manufacturer's guide when available. Coil shock spring rate guidance is included.</div>
+  </div>
+
+  <div class="brand-tabs">
+    <button class="brand-tab active" onclick="selShockBrand('fox',this)">Fox</button>
+    <button class="brand-tab" onclick="selShockBrand('rockshox',this)">RockShox</button>
+  </div>
+
+  <!-- FOX SHOCK FORM -->
+  <div id="shock-fox">
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Shock Model</div>
+        <select id="foxs-model">
+          <option value="dpx2">Fox DPX2 (Air — Trail)</option>
+          <option value="float_x">Fox Float X (Air — Enduro)</option>
+          <option value="float_x2">Fox Float X2 (Air — Enduro/DH)</option>
+          <option value="dhx2">Fox DHX2 (Coil — DH/Enduro)</option>
+          <option value="dhx">Fox DHX (Coil — Trail)</option>
+        </select>
+      </div>
+      <div class="fg"><div class="fl">Rider Weight (with gear)</div>
+        <input type="number" id="foxs-weight" placeholder="e.g. 80" min="40" max="160">
+      </div>
+      <div class="fg"><div class="fl">Unit</div>
+        <select id="foxs-unit"><option value="kg">kg</option><option value="lbs">lbs</option></select>
+      </div>
+    </div>
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Stroke Length (mm)</div>
+        <input type="number" id="foxs-stroke" placeholder="e.g. 55" min="30" max="75">
+      </div>
+      <div class="fg"><div class="fl">Riding Style</div>
+        <select id="foxs-style">
+          <option value="xc">XC / Climber-focused</option>
+          <option value="trail">Trail</option>
+          <option value="enduro">Enduro / Aggressive</option>
+          <option value="dh">DH / Bike Park</option>
+        </select>
+      </div>
+    </div>
+    <button class="cbtn" onclick="calcFoxShock()">Calculate Fox Shock</button>
+  </div>
+
+  <!-- ROCKSHOX SHOCK FORM -->
+  <div id="shock-rs" style="display:none">
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Shock Model</div>
+        <select id="rss-model">
+          <option value="deluxe">Super Deluxe Air (Trail/Enduro)</option>
+          <option value="deluxecoil">Super Deluxe Coil</option>
+          <option value="vivid">Vivid Air (Enduro)</option>
+          <option value="vividcoil">Vivid Coil</option>
+          <option value="monarch">Monarch (Trail)</option>
+          <option value="sidluxe">SID Luxe (XC)</option>
+        </select>
+      </div>
+      <div class="fg"><div class="fl">Rider Weight (with gear)</div>
+        <input type="number" id="rss-weight" placeholder="e.g. 80" min="40" max="160">
+      </div>
+      <div class="fg"><div class="fl">Unit</div>
+        <select id="rss-unit"><option value="kg">kg</option><option value="lbs">lbs</option></select>
+      </div>
+    </div>
+    <div class="fork-row">
+      <div class="fg"><div class="fl">Stroke Length (mm)</div>
+        <input type="number" id="rss-stroke" placeholder="e.g. 55" min="30" max="75">
+      </div>
+      <div class="fg"><div class="fl">Riding Style</div>
+        <select id="rss-style">
+          <option value="xc">XC / Climber-focused</option>
+          <option value="trail">Trail</option>
+          <option value="enduro">Enduro / Aggressive</option>
+          <option value="dh">DH / Bike Park</option>
+        </select>
+      </div>
+    </div>
+    <button class="cbtn" onclick="calcRSShock()">Calculate RockShox Shock</button>
+  </div>
+
+  <!-- SHOCK RESULTS -->
+  <div id="result-shock" class="result-box">
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+      <div>
+        <div class="rlabel" id="shock-psi-lbl">Starting Air Pressure</div>
+        <div class="big-row"><div><div class="rnum" id="shock-psi">--</div><span class="runit">PSI</span></div></div>
+      </div>
+      <div>
+        <div class="rlabel">Sag Target</div>
+        <div class="rnum" id="shock-sag-pct" style="font-size:36px;">--</div><span class="runit">%</span>
+        <div style="font-size:12px;color:#999;margin-top:2px;" id="shock-sag-mm">-- mm on stroke</div>
+      </div>
+    </div>
+    <div class="sag-visual"><div class="sag-bar" id="shock-sag-bar"></div><span class="sag-lbl" id="shock-sag-lbl"></span></div>
+    <div style="margin-top:16px;">
+      <div class="rlabel" style="margin-bottom:8px;">Damping Starting Points</div>
+      <div class="damping-grid">
+        <div class="dcell hl"><div class="cl">Rebound</div><div class="cv" id="shock-rebound">--</div><div class="cu">clicks from closed</div></div>
+        <div class="dcell"><div class="cl">LSC</div><div class="cv" id="shock-lsc">--</div><div class="cu">clicks from closed</div></div>
+        <div class="dcell"><div class="cl">HSC</div><div class="cv" id="shock-hsc">--</div><div class="cu">clicks from closed</div></div>
+        <div class="dcell"><div class="cl">HBO</div><div class="cv" id="shock-hbo">--</div><div class="cu">hydraulic bottom-out</div></div>
+      </div>
+    </div>
+    <div class="rnote" id="shock-note"></div>
+    <div class="tune-tip" id="shock-tip"></div>
+  </div>
+</div>
+
+<!-- SAG CALCULATOR -->
+<div id="sub-sag" class="sub-panel">
+  <div class="panel-header">
+    <div class="panel-tag">Suspension</div>
+    <div class="panel-title">Sag Calculator</div>
+    <div class="panel-desc">Sag is how far your suspension compresses under your weight in a normal riding position. Measure with a zip-tie or O-ring on the stanchion. Enter your numbers below to get your sag percentage, or work backwards from a target percentage to find your sag in millimetres.</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+    <div style="background:#f8f8f8;border-radius:6px;padding:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:14px;color:#222;">Measure Sag %</div>
+      <div class="fg"><div class="fl">Total Travel (mm)</div><input type="number" id="sag-travel" placeholder="e.g. 150" min="50" max="250"></div>
+      <div class="fg"><div class="fl">Sag Measurement (mm)</div><input type="number" id="sag-meas" placeholder="e.g. 35" min="0" max="200"></div>
+      <button class="cbtn" onclick="calcSagPct()" style="width:100%">Calculate %</button>
+      <div id="sag-pct-result" style="display:none;margin-top:14px;text-align:center;background:#fff;border:2px solid #111;border-radius:4px;padding:16px;">
+        <div class="rlabel">Your Sag</div>
+        <div class="rnum" id="sag-pct-val">--</div><span class="runit">%</span>
+        <div style="font-size:13px;color:#666;margin-top:8px;" id="sag-pct-adv"></div>
+      </div>
+    </div>
+    <div style="background:#f8f8f8;border-radius:6px;padding:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:14px;color:#222;">Target Sag in mm</div>
+      <div class="fg"><div class="fl">Total Travel (mm)</div><input type="number" id="sag2-travel" placeholder="e.g. 150" min="50" max="250"></div>
+      <div class="fg"><div class="fl">Target Sag %</div>
+        <select id="sag2-pct">
+          <option value="15">15% - Fox fork (firm/XC)</option>
+          <option value="17">17% - Fox fork (trail)</option>
+          <option value="20">20% - Fox fork (plush/enduro)</option>
+          <option value="25">25% - RockShox fork / rear shock</option>
+          <option value="28">28% - RockShox DebonAir trail</option>
+          <option value="30">30% - RockShox DebonAir+ / rear shock</option>
+          <option value="35">35% - Coil shock / DH</option>
+        </select>
+      </div>
+      <button class="cbtn" onclick="calcSagMm()" style="width:100%">Calculate mm</button>
+      <div id="sag-mm-result" style="display:none;margin-top:14px;text-align:center;background:#fff;border:2px solid #111;border-radius:4px;padding:16px;">
+        <div class="rlabel">Sag Target</div>
+        <div class="rnum" id="sag-mm-val">--</div><span class="runit">mm</span>
+        <div style="font-size:13px;color:#555;margin-top:8px;" id="sag-mm-desc"></div>
+      </div>
+    </div>
+  </div>
+  <hr class="sec-div">
+  <div style="font-family:'Playfair Display',serif;font-size:20px;letter-spacing:.04em;margin-bottom:10px;">Sag Reference by Brand &amp; Discipline</div>
+  <table class="svc-table">
+    <thead><tr><th>Brand / Type</th><th>Sag Target</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Fox Fork (all models)</td><td>15–20%</td><td>Official Fox spec. 15% = firm/XC, 20% = plush/enduro. Source: Fox tech.ridefox.com</td></tr>
+      <tr><td>RockShox Fork — DebonAir+ (2023+)</td><td>25–30%</td><td>Higher ride height for confidence in steeps. Use TrailHead app for exact starting PSI</td></tr>
+      <tr><td>RockShox Fork — DebonAir / SoloAir</td><td>20–25%</td><td>Pre-2023 models, XC forks (SID, Recon, Reba)</td></tr>
+      <tr><td>Fox Rear Shock (air)</td><td>25–30%</td><td>Frame-dependent — check your frame maker first. Cycle EVOL chamber 3x after pumping</td></tr>
+      <tr><td>RockShox Rear Shock — DebonAir</td><td>30%</td><td>Official SRAM recommendation (support.rockshox.com)</td></tr>
+      <tr><td>RockShox Rear Shock — SoloAir</td><td>25%</td><td>Official SRAM recommendation</td></tr>
+      <tr><td>Coil Shock (any brand)</td><td>25–30%</td><td>Swap spring rate if you cannot reach target range within 5 turns of preload</td></tr>
+      <tr><td>DH / Bike Park</td><td>30–35%</td><td>More sag = more travel in use = better absorption on big hits and landings</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SERVICE INTERVALS -->
+<div id="sub-service" class="sub-panel">
+  <div class="panel-header">
+    <div class="panel-tag">Maintenance</div>
+    <div class="panel-title">Suspension Service Intervals</div>
+    <div class="panel-desc">A perfectly-tuned fork feels terrible if the seals are dry or the oil has degraded. These are official service intervals from Fox and RockShox documentation. Reduce intervals by 30–50% for very wet, muddy, or dusty conditions, or if you do lift-accessed DH or bike park riding.</div>
+  </div>
+
+  <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Fox Suspension — Official Intervals</div>
+  <table class="svc-table">
+    <thead><tr><th>Service</th><th>Interval</th><th>What It Covers</th></tr></thead>
+    <tbody>
+      <tr><td>Lower Leg Service (fork)</td><td>50 hrs or annually</td><td>Drain and replace lower leg oil, clean and re-lube dust wipers and foam rings</td></tr>
+      <tr><td>Air Spring Service (fork)</td><td>125 hrs</td><td>Inspect and lube air piston, replace air piston O-rings</td></tr>
+      <tr><td>Full Damper Service (fork)</td><td>200 hrs</td><td>Full damper cartridge rebuild, replace seals, fresh fluid</td></tr>
+      <tr><td>Rear Shock — basic</td><td>100 hrs</td><td>Wipe seals, inspect for leaks, check and top up air pressure</td></tr>
+      <tr><td>Rear Shock — full service</td><td>200 hrs</td><td>Rebuild damper, replace all seals and oil, inspect IFP</td></tr>
+    </tbody>
+  </table>
+
+  <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin:20px 0 8px;">RockShox Suspension — Official Intervals</div>
+  <table class="svc-table">
+    <thead><tr><th>Service</th><th>Interval</th><th>What It Covers</th></tr></thead>
+    <tbody>
+      <tr><td>Lower Leg Service (fork)</td><td>50 hrs or annually</td><td>Drain lower leg oil, clean seals, lubricate with Maxima PLUSH Dynamic Suspension Lube</td></tr>
+      <tr><td>Air Spring / Foam Ring Service</td><td>100 hrs</td><td>Replace foam rings, inspect air piston, re-lube air spring shaft</td></tr>
+      <tr><td>Charger 3 Damper Service</td><td>200 hrs</td><td>Full cartridge rebuild, fresh Maxima PLUSH 7wt (Charger 3) or 3wt (Charger Race Day 2)</td></tr>
+      <tr><td>Rear Shock — basic</td><td>100 hrs</td><td>Clean and lube seals, inspect air can, re-check sag</td></tr>
+      <tr><td>Rear Shock — full service</td><td>200 hrs</td><td>Full rebuild: IFP, can seals, main piston seals, fresh oil</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tune-tip" style="margin-top:16px;"><strong>Pro tip:</strong> A basic lower leg service takes about 30 minutes and transforms small-bump sensitivity. It is the single highest-impact DIY maintenance you can do on any suspension fork. Track hours via your GPS computer — most Garmin and Wahoo units display total ride time.</div>
+
+  <hr class="sec-div">
+  <div style="font-family:'Playfair Display',serif;font-size:18px;letter-spacing:.04em;margin-bottom:8px;">Service Interval Estimator</div>
+  <div class="fork-row" style="max-width:400px;">
+    <div class="fg"><div class="fl">Avg Ride Duration (hrs)</div><input type="number" id="srv-dur" placeholder="2" min="0.5" max="10" step="0.5"></div>
+    <div class="fg"><div class="fl">Rides Per Week</div><input type="number" id="srv-rides" placeholder="3" min="1" max="14"></div>
+  </div>
+  <button class="cbtn" onclick="calcService()">Estimate Service Dates</button>
+  <div id="result-service" style="display:none;margin-top:16px;">
+    <div class="damping-grid">
+      <div class="dcell hl"><div class="cl">Lower Leg</div><div class="cv" id="srv-ll">--</div><div class="cu">weeks from now</div></div>
+      <div class="dcell"><div class="cl">Air Spring</div><div class="cv" id="srv-air">--</div><div class="cu">weeks from now</div></div>
+      <div class="dcell"><div class="cl">Full Service</div><div class="cv" id="srv-full">--</div><div class="cu">weeks from now</div></div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">BikeSetup<span>.Pro</span></div>
+    <div class="footer-tagline">No ads &middot; No tracking &middot; Suspension data from Fox and RockShox official documentation</div>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="calculators.html">Calculators</a>
+      <a href="guides/index.html">Guides</a>
+      <a href="suspension.html">Suspension</a>
+    </div>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+renderSiteHeader('suspension');
+
+function selBrand(b,btn){
+  document.querySelectorAll('#sub-fork .brand-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fork-fox').style.display=b==='fox'?'block':'none';
+  document.getElementById('fork-rs').style.display=b==='rockshox'?'block':'none';
+  document.getElementById('result-fork').classList.remove('vis');
+}
+function selShockBrand(b,btn){
+  document.querySelectorAll('#sub-shock .brand-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('shock-fox').style.display=b==='fox'?'block':'none';
+  document.getElementById('shock-rs').style.display=b==='rockshox'?'block':'none';
+  document.getElementById('result-shock').classList.remove('vis');
+}
+function switchSub(id,btn){
+  document.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('sub-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Travel map
+const foxTrvl={fox32:[100,120],fox32sc:[100,110,120],fox34:[120,130,140,150],fox34sc:[100,110,120,130],fox36:[130,140,150,160],fox38:[160,170,180]};
+const rsTrvl={sid:[100,110,120],sidsl:[100,110],reba:[100,110,120],recon:[80,100,110,120,130,140,150],pike:[120,130,140],lyrik:[140,150,160],zeb:[150,160,170,180],domain:[140,150,160,170,180],boxxer:[180,200]};
+const foxMaxPsi={fox32:140,fox32sc:150,fox34:120,fox34sc:120,fox36:120,fox38:140};
+
+function updateFoxTravel(){
+  const m=document.getElementById('fox-model').value,s=document.getElementById('fox-travel');
+  if(!foxTrvl[m]){s.innerHTML='<option>--</option>';return;}
+  s.innerHTML=foxTrvl[m].map(t=>`<option value="${t}">${t}mm</option>`).join('');
+}
+function updateRSTravel(){
+  const m=document.getElementById('rs-model').value,s=document.getElementById('rs-travel');
+  if(!rsTrvl[m]){s.innerHTML='<option>--</option>';return;}
+  s.innerHTML=rsTrvl[m].map(t=>`<option value="${t}">${t}mm</option>`).join('');
+}
+
+// ---- FOX FORK CALC ----
+// PSI coefficients calibrated from Fox official starting pressure charts.
+// Fox targets 15-20% sag for all fork families (source: tech.ridefox.com owners manuals).
+// Rebound starting point scales with PSI per Fox official docs.
+// GRIP X2 / GRIP 2: HSC 5 clicks, LSC 10 clicks from closed (source: Fox 2025 manuals).
+function calcFox(){
+  const model=document.getElementById('fox-model').value;
+  const damper=document.getElementById('fox-damper').value;
+  const travel=parseInt(document.getElementById('fox-travel').value);
+  let w=parseFloat(document.getElementById('fox-weight').value);
+  const unit=document.getElementById('fox-unit').value;
+  const style=document.getElementById('fox-style').value;
+  const spacers=parseInt(document.getElementById('fox-spacers').value);
+  if(!model||!w||!travel){alert('Please fill in all fields.');return;}
+  const kg=unit==='lbs'?w*0.4536:w;
+  const lbs=kg*2.2046;
+  const c={fox32:0.68,fox32sc:0.70,fox34:0.62,fox34sc:0.65,fox36:0.58,fox38:0.55}[model]||0.60;
+  const sAdj={xc:1.07,trail:1.0,enduro:0.93,dh:0.88}[style]||1.0;
+  let psi=Math.round(lbs*c*sAdj - spacers*4);
+  const maxPsi=foxMaxPsi[model]||120;
+  const capped=psi>maxPsi;
+  psi=Math.min(psi,maxPsi);
+  const bar=(psi/14.5038).toFixed(1);
+  const sagPct=style==='xc'?15:style==='dh'?20:17;
+  const sagMm=Math.round(travel*sagPct/100);
+  const reb=Math.max(4,Math.min(15,Math.round(8+(psi-60)*0.05)));
+  const hasLSC=['grip2','gripx','gripx2'].includes(damper);
+  const hasHSC=['gripx','gripx2','grip2'].includes(damper);
+  document.getElementById('fork-psi').textContent=psi;
+  document.getElementById('fork-bar').textContent=bar;
+  document.getElementById('fork-sag-pct').textContent=sagPct;
+  document.getElementById('fork-sag-mm').textContent=sagMm+'mm sag on '+travel+'mm travel';
+  document.getElementById('fork-sag-bar').style.width=sagPct+'%';
+  document.getElementById('fork-sag-lbl').textContent=sagPct+'%';
+  document.getElementById('fork-rebound').textContent=reb;
+  document.getElementById('fork-lsc').textContent=hasLSC?10:'N/A';
+  document.getElementById('fork-hsc').textContent=hasHSC?5:'N/A';
+  document.getElementById('fork-maxpsi').textContent=maxPsi;
+  document.getElementById('cell-lsc').style.opacity=hasLSC?'1':'0.4';
+  document.getElementById('cell-hsc').style.opacity=hasHSC?'1':'0.4';
+  const mname=document.getElementById('fox-model').selectedOptions[0].text;
+  document.getElementById('fork-note').textContent=mname+' - '+travel+'mm - '+Math.round(kg)+'kg ('+Math.round(lbs)+'lbs). Start at '+psi+' PSI. Slide the sag O-ring down against the dust wiper, ride in your normal position for 10 seconds, then gently dismount and measure. Target: '+sagMm+'mm of compression.'+(spacers>0?' '+spacers+' spacer(s) fitted - PSI reduced accordingly.':'');
+  document.getElementById('fork-warn').classList.toggle('vis',capped);
+  document.getElementById('fork-warn-txt').textContent=capped?'Calculated pressure exceeds the '+maxPsi+' PSI max for this fork. Consider adding volume spacers to improve bottom-out resistance without exceeding the pressure limit.':'';
+  document.getElementById('fork-tip').innerHTML='<strong>Damping setup:</strong> Wind rebound fully clockwise (closed), then back out '+reb+' clicks counter-clockwise.'+(hasLSC?' Set LSC to 10 clicks from closed and HSC to 5 clicks from closed - these are Fox\'s official starting points for GRIP X2/GRIP 2 dampers (source: Fox 2025 owners manual)':' Adjust compression from open and add firmness 1 click at a time on trail.')+' Change only one setting at a time, and always write down your baseline before experimenting.';
+  document.getElementById('fork-app').innerHTML='<strong>For your exact fork:</strong> Check the sticker on the back of your fork lowers for a model-specific starting pressure chart. Or use the <a href="https://www.ridefox.com" target="_blank">Fox tech documentation</a> with your fork model year.';
+  document.getElementById('result-fork').classList.add('vis');
+}
+
+// ---- ROCKSHOX FORK CALC ----
+// PSI calibrated from 2025 RockShox Front Suspension Specifications (SRAM official PDF).
+// DebonAir+ targets 25-30% sag - source: SRAM Charger 3 setup guide and TrailHead app.
+// Rebound: clicks from closed (clockwise stop) per SRAM Charger 3 setup guide.
+// Charger 3 compression: start at MIDDLE (not fully open) - source: sram.com/en/rockshox/learn/charger-3-setup
+function calcRockShox(){
+  const model=document.getElementById('rs-model').value;
+  const spring=document.getElementById('rs-spring').value;
+  const travel=parseInt(document.getElementById('rs-travel').value);
+  let w=parseFloat(document.getElementById('rs-weight').value);
+  const unit=document.getElementById('rs-unit').value;
+  const style=document.getElementById('rs-style').value;
+  const tokens=parseInt(document.getElementById('rs-tokens').value);
+  if(!model||!w||!travel){alert('Please fill in all fields.');return;}
+  const kg=unit==='lbs'?w*0.4536:w;
+  const lbs=kg*2.2046;
+  const c={sid:0.75,sidsl:0.78,reba:0.68,recon:0.65,pike:0.52,lyrik:0.50,zeb:0.48,domain:0.47,boxxer:0.50}[model]||0.52;
+  const spAdj={debonairplus:0.92,debonair:1.0,soloair:1.05}[spring]||1.0;
+  const sAdj={xc:1.08,trail:1.0,enduro:0.92,dh:0.86}[style]||1.0;
+  let psi=Math.round(lbs*c*sAdj*spAdj - tokens*5);
+  psi=Math.max(40,psi);
+  const bar=(psi/14.5038).toFixed(1);
+  const sagMap={debonairplus:{xc:25,trail:28,enduro:30,dh:32},debonair:{xc:20,trail:23,enduro:25,dh:28},soloair:{xc:18,trail:22,enduro:25,dh:28}};
+  const sagPct=(sagMap[spring]||sagMap['debonairplus'])[style]||25;
+  const sagMm=Math.round(travel*sagPct/100);
+  const reb=Math.max(3,Math.min(16,Math.round(6+(psi-60)*0.04)));
+  document.getElementById('fork-psi').textContent=psi;
+  document.getElementById('fork-bar').textContent=bar;
+  document.getElementById('fork-sag-pct').textContent=sagPct;
+  document.getElementById('fork-sag-mm').textContent=sagMm+'mm sag on '+travel+'mm travel';
+  document.getElementById('fork-sag-bar').style.width=sagPct+'%';
+  document.getElementById('fork-sag-lbl').textContent=sagPct+'%';
+  document.getElementById('fork-rebound').textContent=reb;
+  document.getElementById('fork-lsc').textContent='Mid';
+  document.getElementById('fork-hsc').textContent='Mid';
+  document.getElementById('fork-maxpsi').textContent=model==='boxxer'?'140':'105';
+  document.getElementById('cell-lsc').style.opacity='1';
+  document.getElementById('cell-hsc').style.opacity='1';
+  const mname=document.getElementById('rs-model').selectedOptions[0].text;
+  const spname={debonairplus:'DebonAir+',debonair:'DebonAir',soloair:'Solo Air'}[spring];
+  document.getElementById('fork-note').textContent=mname+' - '+travel+'mm - '+spname+' - '+Math.round(kg)+'kg. Start at '+psi+' PSI. After every pump adjustment, compress the fork 5 times slowly through 50% of its travel to equalize the positive and negative chambers - this is critical for accurate sag measurement.'+(tokens>0?' '+tokens+' token(s) installed - PSI adjusted by '+(tokens*5)+' PSI.':'');
+  document.getElementById('fork-warn').classList.remove('vis');
+  document.getElementById('fork-tip').innerHTML='<strong>RockShox Charger 3 / 3.1 compression setup:</strong> Unlike older dampers, start both LSC and HSC at the middle of their range - do NOT wind them to closed first. Set rebound to '+reb+' clicks from the closed (fully clockwise / turtle icon) position. '+(spring==='debonairplus'?'DebonAir+ has improved mid-stroke support - if the fork feels harsh off the top, remove 3-5 PSI rather than adding tokens.':'If you hit bottom too easily with correct sag, add one Bottomless Token and repeat the setup process.');
+  document.getElementById('fork-app').innerHTML='<strong>For your exact fork:</strong> Use the <a href="https://www.sram.com/en/rockshox/series/trailhead" target="_blank">RockShox TrailHead App</a> with your fork serial number for model-specific PSI and rebound recommendations. Also check the pressure chart printed on the back of your fork lowers.';
+  document.getElementById('result-fork').classList.add('vis');
+}
+
+// ---- FOX REAR SHOCK ----
+function calcFoxShock(){
+  let w=parseFloat(document.getElementById('foxs-weight').value);
+  const unit=document.getElementById('foxs-unit').value;
+  const model=document.getElementById('foxs-model').value;
+  const stroke=parseFloat(document.getElementById('foxs-stroke').value);
+  const style=document.getElementById('foxs-style').value;
+  if(!w||!stroke){alert('Please fill in all fields.');return;}
+  const kg=unit==='lbs'?w*0.4536:w;
+  const isCoil=model.includes('dhx');
+  const sAdj={xc:1.06,trail:1.0,enduro:0.93,dh:0.87}[style]||1.0;
+  let psi=null;
+  if(!isCoil){const c={dpx2:2.9,float_x:2.7,float_x2:2.6}[model]||2.8;psi=Math.round(kg*c*sAdj);}
+  const sagPct=style==='xc'?25:style==='enduro'?30:style==='dh'?32:28;
+  const sagMm=Math.round(stroke*sagPct/100);
+  const reb=Math.max(4,Math.min(16,isCoil?Math.round(7+(kg-70)*0.04):Math.round(8+((psi||150)-100)*0.04)));
+  const lsc=isCoil?8:7;
+  const hsc=['float_x2','dhx2'].includes(model)?5:null;
+  const mname=document.getElementById('foxs-model').selectedOptions[0].text;
+  document.getElementById('shock-psi-lbl').textContent=isCoil?'Spring Rate Note':'Starting Air Pressure';
+  document.getElementById('shock-psi').textContent=isCoil?'See note':(psi+'');
+  document.getElementById('shock-sag-pct').textContent=sagPct;
+  document.getElementById('shock-sag-mm').textContent=sagMm+'mm sag on '+stroke+'mm stroke';
+  document.getElementById('shock-sag-bar').style.width=sagPct+'%';
+  document.getElementById('shock-sag-lbl').textContent=sagPct+'%';
+  document.getElementById('shock-rebound').textContent=reb;
+  document.getElementById('shock-lsc').textContent=lsc;
+  document.getElementById('shock-hsc').textContent=hsc!==null?hsc:'N/A';
+  document.getElementById('shock-hbo').textContent='Start: 0';
+  document.getElementById('shock-note').textContent=isCoil?mname+': Coil shocks require a spring matched to system weight. Typical rates: 70kg/trail=400lb/in, 80kg/trail=450lb/in, 80kg/enduro=475lb/in. Set 2 full turns of preload from zero, measure sag. Swap spring if you cannot reach 25-30% within 5 turns.':mname+' - '+Math.round(kg)+'kg - '+stroke+'mm stroke. Note: rear shock pressure is frame-dependent (leverage ratio varies). This is a starting point - your frame manufacturer\'s chart takes priority. Cycle the EVOL negative chamber 3-5 times after pumping before measuring sag.';
+  document.getElementById('shock-tip').innerHTML='<strong>Fox rear shock damping:</strong> Set all dials to fully open (counter-clockwise) before measuring sag.'+(hsc!==null?' Float X2/DHX2: HSC '+hsc+' clicks, LSC '+lsc+' clicks from closed as a starting point.':' LSC '+lsc+' clicks from closed.')+' Rebound: '+reb+' clicks from closed. Adjust rebound only after air pressure is finalised.';
+  document.getElementById('result-shock').classList.add('vis');
+}
+
+// ---- ROCKSHOX REAR SHOCK ----
+// Starting PSI: RockShox official = rider body weight in lbs as a starting point
+// (source: support.rockshox.com shock FAQ)
+// DebonAir sag target: 30% (official SRAM recommendation)
+// SoloAir sag target: 25% (official SRAM recommendation)
+function calcRSShock(){
+  let w=parseFloat(document.getElementById('rss-weight').value);
+  const unit=document.getElementById('rss-unit').value;
+  const model=document.getElementById('rss-model').value;
+  const stroke=parseFloat(document.getElementById('rss-stroke').value);
+  const style=document.getElementById('rss-style').value;
+  if(!w||!stroke){alert('Please fill in all fields.');return;}
+  const kg=unit==='lbs'?w*0.4536:w;
+  const lbs=kg*2.2046;
+  const isCoil=['deluxecoil','vividcoil'].includes(model);
+  const sAdj={xc:1.06,trail:1.0,enduro:0.93,dh:0.86}[style]||1.0;
+  let psi=null;
+  if(!isCoil){const c={vivid:0.93,deluxe:0.97,monarch:1.0,sidluxe:1.05}[model]||1.0;psi=Math.round(lbs*c*sAdj);}
+  const sagPcts={vivid:30,deluxe:30,deluxecoil:28,vividcoil:28,monarch:25,sidluxe:25};
+  const sagPct=sagPcts[model]||(style==='dh'?32:style==='enduro'?30:28);
+  const sagMm=Math.round(stroke*sagPct/100);
+  const reb=Math.max(3,Math.min(18,isCoil?Math.round(7+(kg-70)*0.04):Math.round(8+((psi||180)-130)*0.03)));
+  const hsc=['vivid','deluxe'].includes(model)?5:null;
+  const mname=document.getElementById('rss-model').selectedOptions[0].text;
+  document.getElementById('shock-psi-lbl').textContent=isCoil?'Spring Rate Note':'Starting Air Pressure';
+  document.getElementById('shock-psi').textContent=isCoil?'See note':(psi+'');
+  document.getElementById('shock-sag-pct').textContent=sagPct;
+  document.getElementById('shock-sag-mm').textContent=sagMm+'mm sag on '+stroke+'mm stroke';
+  document.getElementById('shock-sag-bar').style.width=sagPct+'%';
+  document.getElementById('shock-sag-lbl').textContent=sagPct+'%';
+  document.getElementById('shock-rebound').textContent=reb;
+  document.getElementById('shock-lsc').textContent=8;
+  document.getElementById('shock-hsc').textContent=hsc!==null?hsc:'N/A';
+  document.getElementById('shock-hbo').textContent=model==='vivid'?'0':'N/A';
+  document.getElementById('shock-note').textContent=isCoil?mname+': For coil shocks, RockShox recommends 25-30% sag. Start with 2 turns of preload. If sag target is unreachable within 5 turns, fit a heavier spring.':mname+' - '+Math.round(kg)+'kg - '+stroke+'mm stroke. RockShox official starting point: ~'+psi+' PSI (approx body weight in lbs). '+(model==='vivid'?'Vivid Air requires a multi-step equalization process - the equalization dimple is near 35% sag. Increase pressure in 50-75 PSI steps, cycle fully 5 times, re-measure sag, repeat.':'After pumping, compress the shock 5 times slowly through full travel to equalize the DebonAir positive and negative chambers before measuring sag.');
+  document.getElementById('shock-tip').innerHTML='<strong>RockShox rear shock damping:</strong> Set all adjusters fully open (counter-clockwise) before measuring sag. Rebound = '+reb+' clicks from the closed position (turtle icon / fully clockwise).'+(hsc!==null?' LSC and HSC: start in the middle of their range.':' LSC: 8 clicks from closed.')+' Check rebound by pushing the shock to 25% travel and releasing - it should return quickly without bouncing.';
+  document.getElementById('result-shock').classList.add('vis');
+}
+
+// ---- SAG CALCULATORS ----
+function calcSagPct(){
+  const travel=parseFloat(document.getElementById('sag-travel').value);
+  const meas=parseFloat(document.getElementById('sag-meas').value);
+  if(!travel||!meas){alert('Fill in both fields.');return;}
+  const pct=(meas/travel*100).toFixed(1);
+  document.getElementById('sag-pct-val').textContent=pct;
+  let a='';
+  if(pct<15)a='Too low - fork/shock will feel harsh. Let out air or reduce spacers/tokens.';
+  else if(pct<=20)a='Good - within Fox recommended range (15-20%).';
+  else if(pct<=25)a='In RockShox DebonAir range. Slightly soft for Fox forks.';
+  else if(pct<=30)a='Good for RockShox DebonAir+ forks and rear shocks.';
+  else a='High sag - may feel wallowy or unsupported. Add air or install tokens/spacers.';
+  document.getElementById('sag-pct-adv').textContent=a;
+  document.getElementById('sag-pct-result').style.display='block';
+}
+function calcSagMm(){
+  const travel=parseFloat(document.getElementById('sag2-travel').value);
+  const pct=parseFloat(document.getElementById('sag2-pct').value);
+  if(!travel){alert('Enter your travel.');return;}
+  const mm=Math.round(travel*pct/100);
+  document.getElementById('sag-mm-val').textContent=mm;
+  document.getElementById('sag-mm-desc').textContent='On a '+travel+'mm fork/shock, '+pct+'% sag = '+mm+'mm of compression when you sit on the bike in riding position.';
+  document.getElementById('sag-mm-result').style.display='block';
+}
+
+// ---- SERVICE ESTIMATOR ----
+function calcService(){
+  const dur=parseFloat(document.getElementById('srv-dur').value)||0;
+  const rides=parseFloat(document.getElementById('srv-rides').value)||0;
+  if(!dur||!rides){alert('Fill in both fields.');return;}
+  const hpw=dur*rides;
+  document.getElementById('srv-ll').textContent=Math.round(50/hpw);
+  document.getElementById('srv-air').textContent=Math.round(100/hpw);
+  document.getElementById('srv-full').textContent=Math.round(200/hpw);
+  document.getElementById('result-service').style.display='block';
+}
+
+// ---- HASH ROUTING ----
+window.addEventListener('load',()=>{
+  const h=location.hash.replace('#','');
+  if(h){const b=document.querySelector('[data-tab="'+h+'"]');if(b)switchSub(h,b);}
+});
+</script>
+<script src="nav.js"></script>
+<script>
+renderSiteHeader('suspension');
+// Show a toast when geo unit detection completes
+document.addEventListener('unitsdetected', function(e) {
+  const units = e.detail.units;
+  const country = sessionStorage.getItem('bsp_country') || '';
+  if (!country) return;
+  const flags = {US:'US',GB:'UK',MM:'MM',LR:'LR'};
+  const label = units === 'imperial' ? 'lbs / imperial' : 'kg / metric';
+  const toast = document.createElement('div');
+  toast.className = 'unit-toast';
+  toast.innerHTML =
+    '<span class="unit-toast-text"><strong>Units auto-set to ' + label + '</strong>' +
+    '<span>Detected from your location &mdash; change any selector to override</span></span>' +
+    '<button class="unit-toast-close" onclick="this.parentElement.classList.remove('show')">&#215;</button>';
+  document.body.appendChild(toast);
+  requestAnimationFrame(function(){ toast.classList.add('show'); });
+  setTimeout(function(){ toast.classList.remove('show'); setTimeout(function(){ toast.remove(); },400); }, 6000);
+});
+</script>
+</body>
+</html>
