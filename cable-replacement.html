@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Replace Bike Cables and Housing | BikeSetup.Pro</title>
+<meta name="description" content="Replace brake and shift cables step by step: cutting housing, routing, tensioning, and bedding-in. Works for Shimano, SRAM, and Campagnolo mechanical systems.">
+<link rel="stylesheet" href="../style.css">
+<style>
+.guide-wrap{max-width:960px;margin:0 auto;padding:3rem 2.5rem 5rem;display:flex;gap:3rem;align-items:flex-start}
+.guide-sidebar{width:200px;flex-shrink:0;position:sticky;top:76px}
+.guide-sidebar-label{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:.6rem}
+.guide-toc{list-style:none;display:flex;flex-direction:column}
+.guide-toc li a{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.3rem 0;border-left:2px solid var(--border);padding-left:.7rem;transition:color .12s,border-color .12s}
+.guide-toc li a:hover{color:var(--text);border-left-color:var(--lichen)}
+.back-link{display:inline-flex;align-items:center;gap:.3rem;font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.08em;color:var(--faint);text-decoration:none;margin-bottom:1.5rem;transition:color .12s}
+.back-link:hover{color:var(--text)}
+.guide-meta{font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+@media(max-width:760px){.guide-wrap{flex-direction:column;padding:1.5rem 1.2rem 3rem}.guide-sidebar{width:100%;position:static}}
+</style>
+</head>
+<body>
+<div class="checker-band"></div>
+<header class="site-header" id="site-header"></header>
+<div class="guide-mobile-nav">
+  <label>Jump to</label>
+  <select onchange="if(this.value){window.location.hash=this.value;this.value=''}">
+    <option value="">— Select section —</option>
+    <option value="when">When to Replace</option>
+    <option value="tools">Tools & Materials</option>
+    <option value="housing">Cut the Housing</option>
+    <option value="route">Route the Cable</option>
+    <option value="tension">Set Tension</option>
+    <option value="stretch">Cable Stretch</option>
+    <option value="tips">Tips & Mistakes</option>
+  </select>
+</div>
+
+<div class="guide-wrap">
+  <aside class="guide-sidebar">
+    <a href="index.html" class="back-link">← All Guides</a>
+    <div class="guide-sidebar-label">On This Page</div>
+    <ul class="guide-toc">
+      <li><a href="#when">When to Replace</a></li>
+      <li><a href="#tools">Tools & Materials</a></li>
+      <li><a href="#housing">Cut the Housing</a></li>
+      <li><a href="#route">Route the Cable</a></li>
+      <li><a href="#tension">Set Tension</a></li>
+      <li><a href="#stretch">Cable Stretch</a></li>
+      <li><a href="#tips">Tips & Mistakes</a></li>
+    </ul>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+      <div class="guide-sidebar-label">Related</div>
+      <a href="derailleur-adjustment.html" style="display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;color:var(--lichen);text-decoration:none;padding:.3rem 0">Derailleur Adjustment →</a>
+      <a href="set-up-brakes.html" style="display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;color:var(--lichen);text-decoration:none;padding:.3rem 0">Disc Brake Setup →</a>
+    </div>
+  </aside>
+
+  <article class="guide-content">
+    <div class="guide-meta">Drivetrain · Intermediate · ~20 min read · 9 steps</div>
+    <div class="panel-tag" style="margin-top:.3rem">Drivetrain</div>
+    <div class="panel-title">Cable & Housing Replacement</div>
+    <div class="panel-desc" style="margin-bottom:2rem">Cables and housing degrade slowly — so slowly that most riders don't notice how much shifting and braking have degraded until they fit new cables and everything suddenly feels crisp again. Fresh cables are one of the highest-value maintenance jobs on a mechanical drivetrain.</div>
+
+    <h2 id="when">When to Replace Cables</h2>
+    <p>Replace cables and housing together — fitting a new cable into old housing negates most of the benefit. Signs it's time:</p>
+    <ul>
+      <li>Shift cable: gear indexing drifts frequently, barrel adjuster is near the end of its travel, cable is frayed or kinked, or it's been 2+ years since the last replacement.</li>
+      <li>Brake cable: lever feels vague or the lever pulls too far before braking, visible rust or fraying near the anchor bolt or inside the housing, or housing feels rough when you compress it by hand.</li>
+      <li>Housing: cracks in the outer sheath, hard spots (indicate internal corrosion or damage), or if new cables are being installed — always replace together.</li>
+    </ul>
+    <div class="pro-tip">If in doubt, replace everything at once. A full cable and housing kit for a bike costs £15–30 and the labour time is the same whether you do one cable or all four. The difference in feel after a full refresh is dramatic.</div>
+
+    <h2 id="tools">Tools and Materials</h2>
+    <div class="tools-grid">
+      <div class="tool-item">Cable cutters (dedicated bike cable cutters, not side-cutters)</div>
+      <div class="tool-item">5mm and 4mm Allen keys</div>
+      <div class="tool-item">Cable housing (compressionless for brakes, spiral-wound for gears)</div>
+      <div class="tool-item">Inner cables (brake and shift — different diameters)</div>
+      <div class="tool-item">Ferrules (end caps for housing — match to your frame stops)</div>
+      <div class="tool-item">Cable end caps (crimp-on, to prevent fraying)</div>
+      <div class="tool-item">Cable lubricant or dry lube spray</div>
+      <div class="tool-item">Awl or bradawl (to open housing ends after cutting)</div>
+    </div>
+    <div class="warning-tip">Brake and gear cable housing are NOT interchangeable. Brake housing is compressionless (spiral-wound steel coil inside), designed to transmit pull force without compressing. Gear housing (also called derailleur housing) has a straight-wound inner sheath and is designed for low-friction push/pull on shift cables. Using gear housing for brakes is dangerous — it compresses under load and gives a spongy, dangerous lever feel.</div>
+
+    <h2 id="housing">Step 1 — Measure and Cut the Housing</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Use the old housing as a template</div><p>Before removing anything, note how long each housing segment is. The easiest method is to cut new housing to exactly the same length as the old pieces. If you're changing the routing or have no reference, a good rule is: the housing should allow full handlebar turn in both directions without pulling taut or creating kinks, and should follow the most direct clean path between cable stops.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Cut cleanly and open the end</div><p>Use proper bike cable cutters — they cut in a shearing action that leaves a clean, flat end. Side-cutters crimp the housing closed. After cutting, the inner liner of the housing is often collapsed. Use an awl, a sharp nail, or the tip of a spoke to push the liner open so it's circular again. A collapsed end pinches the inner cable and causes sticky, imprecise shifting or braking. Fit a ferrule over each end before installing.</p></div></div>
+    </div>
+
+    <h2 id="route">Step 2 — Route the Cable</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Thread the inner cable from the lever end</div><p>Thread the new inner cable through the lever or shifter first. On Shimano STI levers, shift to the highest gear (smallest sprocket) to expose the cable entry port — it's usually visible with a flashlight. On MTB trigger shifters, the port is usually on the inboard face. The cable nipple must seat fully in the lever pocket — a partially seated nipple will pull through under load and leave you with no gears.</p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Thread through housing and stops</div><p>Thread the inner cable through each housing segment and cable stop in sequence. Apply a thin smear of cable lubricant to the inner cable as you thread it through each housing piece — do this before fitting ferrules and cutting to final length. The inner cable should slide freely through the housing with light finger pressure. Any stiffness suggests a collapsed housing end or sharp bend in the housing routing.</p></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Anchor the cable</div><p>Pull the inner cable taut and clamp it at the derailleur or caliper anchor bolt. For shift cables, the correct tension starting point is: pull the cable taut by hand (not yanked) and tighten the pinch bolt to the specified torque (usually 5–6 Nm for Shimano). You'll fine-tune with the barrel adjuster after routing.</p></div></div>
+    </div>
+
+    <h2 id="tension">Step 3 — Set Initial Tension</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Brake cables — set pad contact distance</div><p>For rim brakes, anchor the cable with the pads sitting about 1–2mm from the rim surface. Squeeze the lever — it should feel firm at roughly two-thirds of the travel distance to the handlebar. Too far from the bar means cable is too slack (loosen the anchor bolt, pull more cable through, re-clamp). Too close to the bar means over-tensioned. For rim brakes, the straddle cable or yoke height (on cantilever/V-brakes) affects the mechanical advantage — refer to your brake manufacturer's setup specs.</p></div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Shift cables — see Derailleur Adjustment guide</div><p>After anchoring the shift cable with medium hand tension, follow the indexing procedure in the Derailleur Adjustment guide. New cables will need the barrel adjuster wound out (counter-clockwise) about 2–3 turns more than you'd normally need — they'll stretch in over the first few rides and require re-adjustment.</p></div></div>
+    </div>
+
+    <h2 id="stretch">Cable Stretch — The First Few Rides</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">8</div><div class="step-body"><div class="step-title">Pre-stretch before final setup</div><p>Before finalising tension, pre-stretch the cables. For brake cables: clamp the lever hard several times. For shift cables: back-pedal while pulling the cable taut with your hand (or shift through the full range several times). This removes the initial slack from the cable seating into the housing ends and lever/caliper anchor grooves. Re-tension after pre-stretching and you'll need far fewer mid-ride barrel adjuster corrections.</p></div></div>
+      <div class="step"><div class="step-num">9</div><div class="step-body"><div class="step-title">Trim and cap the cable ends</div><p>Leave 2–3cm of cable protruding beyond the pinch bolt — enough to re-tension if needed, not so much it catches on things. Crimp a cable end cap onto the end using the flat side of cable cutters or pliers. An uncapped cable frays within a few rides and becomes impossible to thread back through the housing.</p></div></div>
+    </div>
+
+    <h2 id="tips">Tips and Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't over-tension brake cables.</strong> Pulling the cable too tight before clamping means your barrel adjusters are maxed out from day one with no room to compensate for stretch. Start with moderate tension and use the barrel adjuster to fine-tune.</li>
+      <li><strong>Wrong housing length is the #1 mistake.</strong> Too short and the cable pulls taut on full handlebar turn, steering and braking simultaneously. Too long and the housing sags and kinks, increasing friction. Check full lock both ways after routing.</li>
+      <li><strong>Lube the inner cable, not the housing outside.</strong> Lubricant on the outside of housing makes no difference and attracts dirt. Lube the inner cable as it's being threaded through.</li>
+      <li><strong>Full outer housing to the rear derailleur.</strong> Many bikes have a full outer housing run from the frame to the rear derailleur rather than using the bare cable run. Full housing has higher friction but is more protected from mud and damage — a worthwhile trade for MTB.</li>
+      <li><strong>Electronic shifting.</strong> This guide covers mechanical (cable-actuated) systems only. Shimano Di2, SRAM AXS, and Campagnolo EPS are electronically actuated and require completely different maintenance procedures.</li>
+    </ul>
+
+    <div class="guide-related">
+      <div class="guide-related-label">Related Guides</div>
+      <a href="derailleur-adjustment.html" class="btn-outline">Rear Derailleur Adjustment</a>
+      <a href="front-derailleur.html" class="btn-outline">Front Derailleur Adjustment</a>
+      <a href="set-up-brakes.html" class="btn-outline">Disc Brake Bleed & Alignment</a>
+    </div>
+  </article>
+</div>
+<div class="checker-band"></div>
+<footer><span>BikeSetup.Pro</span> &nbsp;·&nbsp; <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">All Guides</a> &nbsp;·&nbsp; <a href="../calculators.html">Calculators</a></footer>
+<script src="../nav.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => renderSiteHeader('guides','cable-replacement'));</script>
+</body>
+</html>

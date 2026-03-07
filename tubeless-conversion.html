@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tubeless Bike Conversion Guide — Road, Gravel & MTB</title>
+<meta name="description" content="Convert your bike to tubeless: compatibility checks, rim tape, valve installation, seating the bead, sealant amounts, and hookless rim warnings. Step by step.">
+<link rel="stylesheet" href="../style.css">
+<style>
+.guide-wrap{max-width:960px;margin:0 auto;padding:3rem 2.5rem 5rem;display:flex;gap:3rem;align-items:flex-start}
+.guide-sidebar{width:200px;flex-shrink:0;position:sticky;top:76px}
+.guide-sidebar-label{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:.6rem}
+.guide-toc{list-style:none;display:flex;flex-direction:column}
+.guide-toc li a{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.3rem 0;border-left:2px solid var(--border);padding-left:.7rem;transition:color .12s,border-color .12s}
+.guide-toc li a:hover{color:var(--text);border-left-color:var(--lichen)}
+.back-link{display:inline-flex;align-items:center;gap:.3rem;font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.08em;color:var(--faint);text-decoration:none;margin-bottom:1.5rem;transition:color .12s}
+.back-link:hover{color:var(--text)}
+.guide-meta{font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+@media(max-width:760px){.guide-wrap{flex-direction:column;padding:1.5rem 1.2rem 3rem}.guide-sidebar{width:100%;position:static}}
+</style>
+</head>
+<body>
+<div class="checker-band"></div>
+<header class="site-header" id="site-header"></header>
+<!-- Mobile jump nav: shown only on small screens -->
+<div class="guide-mobile-nav">
+  <label>Jump to</label>
+  <select onchange="if(this.value){window.location.hash=this.value;this.value=''}">
+    <option value="">— Select section —</option>
+    <option value="compat">Check Compatibility</option>
+    <option value="tools">What You Need</option>
+    <option value="tape">Taping the Rim</option>
+    <option value="valve">Install Valve</option>
+    <option value="tire">Mount the Tire</option>
+    <option value="seat">Seat & Seal</option>
+    <option value="maintain">Maintenance</option>
+  </select>
+</div>
+
+<div class="guide-wrap">
+  <aside class="guide-sidebar">
+    <a href="index.html" class="back-link">← All Guides</a>
+    <div class="guide-sidebar-label">On This Page</div>
+    <ul class="guide-toc">
+      <li><a href="#compat">Compatibility</a></li>
+      <li><a href="#tools">What You Need</a></li>
+      <li><a href="#tape">Taping the Rim</a></li>
+      <li><a href="#valve">Valve Install</a></li>
+      <li><a href="#tire">Mount the Tire</a></li>
+      <li><a href="#seat">Seat & Seal</a></li>
+      <li><a href="#maintain">Maintenance</a></li>
+    </ul>
+    <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border)">
+      <div class="guide-sidebar-label">Related</div>
+      <a href="seat-tubeless-tire.html" style="display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;color:var(--lichen);text-decoration:none;padding:.3rem 0">Seating a Tubeless Tire →</a>
+      <a href="../calculators.html#sealant" style="display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:700;color:var(--lichen);text-decoration:none;padding:.3rem 0">Sealant Calculator →</a>
+    </div>
+  </aside>
+  <article class="guide-content">
+    <div class="guide-meta">Tires · Beginner · ~10 min read · 9 steps</div>
+    <div class="panel-tag" style="margin-top:.3rem">Tires</div>
+    <div class="panel-title">Tubeless Conversion Guide</div>
+    <div class="panel-desc" style="margin-bottom:2rem">Converting to tubeless eliminates pinch flats, lets you run lower pressure for better grip, and gives you automatic puncture protection through sealant. It's straightforward once you confirm compatibility and have the right supplies.</div>
+
+    <h2 id="compat">Check Compatibility First</h2>
+    <p>You need a <strong>tubeless-ready rim</strong> (look for "TLR," "UST," or "Tubeless Ready" in specs) and a <strong>tubeless-compatible tire</strong> (marked "TLR," "TR," "TCS"). Standard clincher tires have too-loose bead tolerances and won't hold pressure reliably without a tube.</p>
+    <div class="warning-tip">Hookless carbon rims have strict approved tire lists. Always verify compatibility on the rim manufacturer's website before mounting — an incompatible tire can blow off a hookless rim at pressure.</div>
+
+    <h2 id="tools">What You Need</h2>
+    <div class="tools-grid">
+      <div class="tool-item">Tubeless rim tape</div>
+      <div class="tool-item">Tubeless valve stems (×2)</div>
+      <div class="tool-item">Tubeless sealant</div>
+      <div class="tool-item">Syringe or injector</div>
+      <div class="tool-item">Valve core remover</div>
+      <div class="tool-item">Floor pump or compressor</div>
+      <div class="tool-item">Isopropyl alcohol</div>
+    </div>
+    <p>Choose rim tape 2–4mm wider than your rim's inner width. Stan's, Gorilla Tape, and OEM rim-specific tapes are all reliable. Avoid electrical tape — it fails at high temperature and pressure.</p>
+
+    <h2 id="tape">Taping the Rim</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><div class="step-title">Clean the rim bed</div><p>Wipe the entire rim channel with isopropyl alcohol and let it dry. Any residue prevents adhesion. Remove all old tape completely.</p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><div class="step-title">Apply the tape</div><p>Start at the valve hole, stretch slightly as you apply, and complete two full laps overlapping your start by <span data-metric="5cm" data-imperial="2 in">5cm</span>. Press firmly with your thumb into the rim channel. No bubbles over spoke holes — these are the most common leak points.</p></div></div>
+    </div>
+    <div class="pro-tip">Use a plastic tire lever handle to burnish the tape edges firmly into the rim channel after application. Adhesion at the channel walls is critical at high pressure.</div>
+
+    <h2 id="valve">Install the Valve</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">3</div><div class="step-body"><div class="step-title">Pierce and install</div><p>Use a sharp awl to punch through the tape at the valve hole. Insert the tubeless valve from inside the rim, seat the rubber base flat against the tape, and snug the lockring from outside. Don't overtighten — the rubber base can deform and leak.</p></div></div>
+    </div>
+
+    <h2 id="tire">Mount the Tire</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">4</div><div class="step-body"><div class="step-title">Mount dry first — no sealant yet</div><p>Push both beads over the rim using only your thumbs, keeping the last section near the valve where there's the most slack. Tire levers can nick the tubeless bead and cause leaks. If you genuinely can't mount it by hand, warm the tire indoors first.</p></div></div>
+    </div>
+
+    <h2 id="seat">Seat and Add Sealant</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">5</div><div class="step-body"><div class="step-title">Remove the valve core and inflate</div><p>Use a valve core tool to remove the core — this lets air rush in far faster. Pump quickly and listen for two pops as each bead seats. If a floor pump won't do it, use a compressor or booster tank. See the companion guide for detailed seating tips.</p></div></div>
+      <div class="step"><div class="step-num">6</div><div class="step-body"><div class="step-title">Inject sealant</div><p>Slightly deflate the tire. Inject sealant through the open valve using a syringe (see the Sealant Calculator for brand-specific amounts). Reinstall the valve core and inflate to a few PSI above your normal riding pressure.</p></div></div>
+      <div class="step"><div class="step-num">7</div><div class="step-body"><div class="step-title">Distribute and cure</div><p>Spin and rotate the wheel in all directions for 2–3 minutes to coat the inner surface. Leave it flat for 10 minutes per side. Check for leaks with soapy water. The wheel should hold pressure overnight — if it loses more than 5 PSI, check the valve and bead area.</p></div></div>
+    </div>
+
+    <h2 id="maintain">Ongoing Maintenance</h2>
+    <p>Check sealant every <strong>2–3 months</strong>. Remove the valve core and dip a thin wire in — if it comes out dry, top up. You can inject fresh sealant through the valve without breaking the bead. After a self-sealed puncture, the dried plug can stay in place permanently.</p>
+    <div class="pro-tip">Keep a plug kit (Dynaplug or similar) in your saddle bag for holes larger than ~4mm that sealant can't seal on its own.</div>
+
+    <div class="guide-related">
+      <div class="guide-related-label">Related Guides & Calculators</div>
+      <a href="seat-tubeless-tire.html" class="btn-outline">Seating a Tubeless Tire</a>
+      <a href="true-a-wheel.html" class="btn-outline">How to True a Wheel</a>
+      <a href="flat-repair.html" class="btn-outline">How to Fix a Flat Tire</a>
+      <a href="../calculators.html#sealant" class="btn">Sealant Calculator</a>
+    </div>
+  </article>
+</div>
+<div class="checker-band"></div>
+<footer><span>BikeSetup.Pro</span> &nbsp;·&nbsp; <a href="../index.html">Home</a> &nbsp;·&nbsp; <a href="index.html">All Guides</a> &nbsp;·&nbsp; <a href="../calculators.html">Calculators</a></footer>
+<script src="../nav.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => renderSiteHeader('guides','tubeless-conversion'));</script>
+<script>document.addEventListener('unitsdetected',function(e){var units=e.detail.units;var country=sessionStorage.getItem('bsp_country')||'';if(!country)return;var label=units==='imperial'?'lbs / imperial':'kg / metric';var toast=document.createElement('div');toast.className='unit-toast';toast.innerHTML='<span style=line-height:1.4><strong style=display:block;margin-bottom:2px;color:#fff>Units set to '+label+'</strong><span style=color:#aaa;font-size:12px>Auto-detected - measurements updated in this guide</span></span><button onclick="this.parentElement.classList.remove(\x27show\x27)" style="margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;padding:0">&#215;</button>';document.body.appendChild(toast);requestAnimationFrame(function(){toast.classList.add('show');});setTimeout(function(){toast.classList.remove('show');setTimeout(function(){toast.remove();},350);},6000);});</script></body>
+</html>

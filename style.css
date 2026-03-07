@@ -277,16 +277,16 @@ footer a:hover{color:var(--muted)}
 
 @media(max-width:680px){
   .page-body{flex-direction:column}
-  .sidebar{width:100%;height:auto;position:static;flex-direction:row;padding:0;border-right:none;border-bottom:1px solid var(--border);overflow-x:auto}
+  .sidebar{width:100%;height:auto;position:static;flex-direction:row;padding:0;border-right:none;border-bottom:1px solid var(--border);overflow:hidden}
   .sidebar-label{display:none}
   .sidebar-divider{display:none}
-  .sidebar-link-out{flex-direction:column;gap:.2rem;align-items:center;text-align:center;font-size:.68rem;min-width:65px;padding:.7rem .9rem;border-left:none;border-bottom:2px solid transparent;white-space:nowrap}
+  .sidebar-link-out{flex-direction:column;gap:.15rem;align-items:center;text-align:center;font-size:.62rem;min-width:56px;padding:.55rem .5rem;border-left:none;border-bottom:2px solid transparent;white-space:nowrap;flex-shrink:0}
   .sidebar-link-out:hover{border-left-color:transparent;border-bottom-color:var(--ochre)}
-  .sidebar nav{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .sidebar nav{flex-direction:row;flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;width:100%}
   .sidebar nav::-webkit-scrollbar{display:none}
-  .sidebar nav button,.sidebar nav a{border-left:none;border-bottom:2px solid transparent;padding:.7rem .9rem;flex-direction:column;gap:.2rem;align-items:center;text-align:center;font-size:.68rem;min-width:65px;white-space:nowrap}
+  .sidebar nav button,.sidebar nav a{border-left:none;border-bottom:2px solid transparent;padding:.55rem .5rem;flex-direction:column;gap:.15rem;align-items:center;text-align:center;font-size:.62rem;min-width:56px;white-space:nowrap;flex-shrink:0}
   .sidebar nav button.active,.sidebar nav a.active{border-bottom-color:var(--lichen);border-left-color:transparent;background:var(--mist)}
-  .nav-icon{width:22px;height:22px}
+  .nav-icon{width:20px;height:20px}
   .nav-text .nav-sub{display:none}
   main{padding:1.5rem 1rem 3rem}
   .dual-result{grid-template-columns:1fr}
