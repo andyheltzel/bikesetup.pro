@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTB Suspension Setup Guide — Fox & RockShox | BikeSetup.Pro</title>
+<meta name="description" content="Set up MTB suspension in five phases: sag, air pressure, rebound, compression, and volume tokens. Covers Fox and RockShox forks and shocks with pressure tables.">
+<link rel="stylesheet" href="../style.css">
+<style>
+.guide-wrap{max-width:960px;margin:0 auto;padding:3rem 2.5rem 5rem;display:flex;gap:3rem;align-items:flex-start}
+.guide-sidebar{width:200px;flex-shrink:0;position:sticky;top:76px}
+.guide-sidebar-label{font-family:'DM Sans',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:.6rem}
+.guide-toc{list-style:none;display:flex;flex-direction:column}
+.guide-toc li a{display:block;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;padding:.3rem 0;border-left:2px solid var(--border);padding-left:.7rem;transition:color .12s,border-color .12s}
+.guide-toc li a:hover{color:var(--text);border-left-color:var(--lichen)}
+.back-link{display:inline-flex;align-items:center;gap:.3rem;font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:600;letter-spacing:.08em;color:var(--faint);text-decoration:none;margin-bottom:1.5rem;transition:color .12s}
+.back-link:hover{color:var(--text)}
+.guide-meta{font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+@media(max-width:760px){.guide-wrap{flex-direction:column;padding:1.5rem 1.2rem 3rem}.guide-sidebar{width:100%;position:static}}
+
+.guide-intro{background:var(--glass);color:var(--text);padding:28px 32px;border-radius:10px;margin-bottom:28px}
+.guide-intro h1{font-family:'Playfair Display',serif;font-size:38px;letter-spacing:.04em;color:var(--text);margin:0 0 8px}
+.guide-intro p{font-family:'DM Sans',sans-serif;font-size:15px;color:var(--muted);margin:0;line-height:1.6}
+.guide-intro .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.guide-intro .tag{background:var(--lichen);color:var(--text);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:8px}
+.guide-intro .tag.blue{background:var(--ochre)}
+.guide-intro .tag.grey{background:#444}
+.step-card{display:flex;gap:20px;padding:22px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start}
+.step-card:last-child{border-bottom:none}
+.step-num{flex-shrink:0;width:44px;height:44px;background:var(--lichen);color:var(--text);font-family:'Playfair Display',serif;font-size:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;letter-spacing:.04em}
+.step-body h3{font-family:'DM Sans',sans-serif;font-weight:700;font-size:18px;letter-spacing:.04em;text-transform:uppercase;color:#111;margin:0 0 6px}
+.step-body p{font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.65;color:#444;margin:0 0 8px}
+.step-body p:last-child{margin-bottom:0}
+.pro-tip{background:#fffbe6;border-left:3px solid #f0b400;padding:10px 14px;font-size:13px;color:#7a5f00;font-family:'DM Sans',sans-serif;line-height:1.5;margin-top:10px;border-radius:0 4px 4px 0}
+.warning-tip{background:#fff0f0;border-left:3px solid var(--lichen);padding:10px 14px;font-size:13px;color:#9e1111;font-family:'DM Sans',sans-serif;line-height:1.5;margin-top:10px;border-radius:0 4px 4px 0}
+.brand-header{background:#f5f5f5;border-left:4px solid var(--lichen);padding:12px 16px;margin-bottom:16px;border-radius:0 4px 4px 0}
+.brand-header.blue{border-left-color:var(--ochre)}
+.brand-header h2{font-family:'Playfair Display',serif;font-size:24px;letter-spacing:.05em;color:#111;margin:0 0 2px}
+.brand-header p{font-family:'DM Sans',sans-serif;font-size:13px;color:var(--faint);margin:0}
+.spec-table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}
+.spec-table th{background:var(--glass);color:var(--text);font-family:'DM Sans',sans-serif;text-transform:uppercase;letter-spacing:.05em;padding:8px 12px;text-align:left;font-size:12px}
+.spec-table td{padding:8px 12px;border:1px solid var(--border);font-family:'DM Sans',sans-serif}
+.spec-table tr:last-child td{border-bottom:none}
+.spec-table tr:hover td{background:#fafafa}
+.spec-table td.val{font-weight:700;color:#111}
+.toc{background:#f8f8f8;border:1px solid #e8e8e8;border-radius:10px;padding:18px 20px;margin-bottom:28px}
+.toc h4{font-family:'DM Sans',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:13px;color:#999;margin:0 0 12px}
+.toc ol{margin:0;padding-left:18px;font-family:'DM Sans',sans-serif;font-size:14px;line-height:2}
+.toc ol li a{color:var(--ochre);text-decoration:none}
+.toc ol li a:hover{text-decoration:underline}
+.phase-label{display:inline-block;background:var(--glass);color:var(--text);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:8px;margin-bottom:8px}
+.phase-label.red{background:var(--lichen)}
+.phase-label.blue{background:var(--ochre)}
+.symptom-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:600px){.symptom-grid{grid-template-columns:1fr}}
+.symptom-card{background:#f8f8f8;border:1px solid #eee;border-radius:10px;padding:14px 16px}
+.symptom-card .symptom{font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.05em;color:var(--lichen);margin-bottom:6px}
+.symptom-card .fix{font-family:'DM Sans',sans-serif;font-size:13px;color:#444;line-height:1.5}
+.related-links{background:#f5f9ff;border:1px solid #d0e4f7;border-radius:10px;padding:18px 20px;margin-top:28px}
+.related-links h4{font-family:'DM Sans',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:13px;color:var(--ochre);margin:0 0 12px}
+.related-links a{display:inline-block;background:var(--ochre);color:var(--text);text-decoration:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.05em;padding:6px 14px;border-radius:3px;margin:3px 3px 3px 0;transition:background .15s}
+.related-links a:hover{background:#003f7a}
+.related-links a.red{background:var(--lichen)}
+.related-links a.red:hover{background:#b8000a}
+h2.section-head{font-family:'Playfair Display',serif;font-size:28px;letter-spacing:.04em;color:#111;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--lichen)}
+.brand-section{margin:24px 0}
+.unit-toast{position:fixed;bottom:20px;right:20px;background:var(--glass);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:10px 16px;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.25);display:flex;align-items:center;gap:10px;z-index:999;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;max-width:320px}.unit-toast.show{opacity:1;transform:translateY(0);pointer-events:auto}.unit-toast-text{line-height:1.4}.unit-toast-close{margin-left:8px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:18px;padding:0;line-height:1;flex-shrink:0}</style>
+</head>
+<body class="guide-page">
+<div class="checker-band"></div>
+<header class="site-header" id="site-header"></header>
+<!-- Mobile section nav (visible only on small screens) -->
+<div class="guide-mobile-nav">
+  <label>Jump to</label>
+  <select onchange="if(this.value) { window.location.hash=this.value; this.value=''; }">
+    <option value="">— Select section —</option>
+    <option value="phase1">Phase 1: Before You Start</option>
+    <option value="phase2">Phase 2: Set Sag</option>
+    <option value="phase3">Phase 3: Rebound</option>
+    <option value="phase4">Phase 4: Compression</option>
+    <option value="phase5">Phase 5: Tokens &amp; Spacers</option>
+    <option value="fox">Fox Fork Reference</option>
+    <option value="rockshox">RockShox Reference</option>
+    <option value="troubleshoot">Troubleshooting</option>
+  </select>
+</div>
+<div class="page-body">
+
+<aside class="sidebar">
+  <div class="sidebar-label">Guide Contents</div>
+  <nav>
+    <a href="#phase1" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Phase 1: Before You Start</a>
+    <a href="#phase2" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Phase 2: Set Sag</a>
+    <a href="#phase3" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Phase 3: Rebound</a>
+    <a href="#phase4" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Phase 4: Compression</a>
+    <a href="#phase5" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Phase 5: Tokens & Spacers</a>
+    <a href="#fox" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Fox Fork Reference</a>
+    <a href="#rockshox" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">RockShox Reference</a>
+    <a href="#troubleshoot" style="display:block;padding:10px 14px;color:#ccc;font-family:'DM Sans',sans-serif;font-size:13px;text-decoration:none;border-bottom:1px solid #222;line-height:1.4">Troubleshooting</a>
+    <div style="padding:16px 14px">
+      <a href="/suspension.html" style="display:block;background:var(--lichen);color:var(--text);text-align:center;padding:9px 6px;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.06em;border-radius:3px;text-decoration:none;margin-bottom:8px">Open Calculator</a>
+      <a href="index.html" style="display:block;background:#222;color:#ccc;text-align:center;padding:9px 6px;font-family:'Playfair Display',serif;font-size:14px;letter-spacing:.06em;border-radius:3px;text-decoration:none">All Guides</a>
+    </div>
+  </nav>
+</aside>
+
+<main class="main-content">
+
+  <div class="guide-intro">
+    <h1>How to Set Up MTB Suspension</h1>
+    <p>A complete guide to dialling in Fox and RockShox forks and rear shocks. Follow the five phases in order. Each phase builds on the last, and skipping ahead leads to chasing settings in circles.</p>
+    <div class="tags">
+      <span class="tag">Suspension</span>
+      <span class="tag blue">Fox</span>
+      <span class="tag blue">RockShox</span>
+      <span class="tag grey">5 Phases</span>
+      <span class="tag grey">Intermediate</span>
+    </div>
+  </div>
+
+  <div class="toc">
+    <h4>What You Need</h4>
+    <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#555;margin:0 0 12px">Digital shock pump, tape measure (mm), sag O-ring or zip tie, pen and notebook.</p>
+    <ol>
+      <li><a href="#phase1">Phase 1 - Prep: open all dampers, check oil, get weighed</a></li>
+      <li><a href="#phase2">Phase 2 - Sag: air pressure and spring setup</a></li>
+      <li><a href="#phase3">Phase 3 - Rebound: match speed to spring rate</a></li>
+      <li><a href="#phase4">Phase 4 - Compression: LSC, HSC, and the 3-position lever</a></li>
+      <li><a href="#phase5">Phase 5 - Volume spacers and tokens</a></li>
+      <li><a href="#fox">Fox fork quick-reference pressure and rebound tables</a></li>
+      <li><a href="#rockshox">RockShox model reference and damper notes</a></li>
+      <li><a href="#troubleshoot">Troubleshooting: common problems and fixes</a></li>
+    </ol>
+  </div>
+
+  <h2 class="section-head" id="phase1">Phase 1 - Before You Start</h2>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <div class="phase-label">Prep</div>
+      <h3>Get your riding weight</h3>
+      <p>Weigh yourself wearing everything you ride in: shoes, helmet, hydration pack, knee pads, and any tools you carry. This is your system weight, and it is the number all pressure calculations are based on. A full hydration pack adds <span data-metric="2-3kg" data-imperial="4-7 lbs">2-3kg</span>. Getting this number right matters more than any other single variable in suspension setup.</p>
+      <div class="pro-tip"><strong>Why it matters:</strong> A <span data-metric="5kg" data-imperial="11 lbs">5kg</span> error in system weight typically shifts starting pressure by 6-10 PSI, which can move sag from 15% to 25% on the same fork.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <div class="phase-label">Prep</div>
+      <h3>Open all damping adjusters</h3>
+      <p>Before measuring sag, set every adjuster to its fully open position by turning counter-clockwise until it stops. On RockShox Charger 3 and 3.1 dampers, use the middle of range for compression adjusters rather than fully open. This ensures the suspension can settle freely into sag without being held up by damping resistance, which would give a false low reading.</p>
+      <div class="pro-tip"><strong>Count your clicks:</strong> As you wind each adjuster to fully closed, count the total clicks. Write these numbers down. Knowing your total range is essential for dialling in compression and rebound settings on trail.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <div class="phase-label">Prep</div>
+      <h3>Check service history</h3>
+      <p>Stale oil makes settings inconsistent. RockShox recommends lower-leg service every 50 hours and a full damper rebuild every 200 hours. Fox recommends lower-leg service every 125 hours (less in wet or dusty conditions). If your suspension is overdue, service it before tuning.</p>
+      <div class="warning-tip"><strong>Do not tune over a service problem.</strong> Sticky seals and degraded oil will make your settings feel wrong regardless of what values you use. Service first, then tune.</div>
+    </div>
+  </div>
+
+  <h2 class="section-head" id="phase2">Phase 2 - Setting Sag</h2>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <div class="phase-label red">Sag</div>
+      <h3>Position the sag O-ring</h3>
+      <p>Slide the rubber O-ring (or a zip tie) down against the dust wiper seal at the top of the fork lower leg. For rear shocks, push the O-ring against the seal at the top of the damper body. This is your reference point. It will stay wherever the suspension settles when you sit on the bike.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <div class="phase-label red">Sag</div>
+      <h3>Set starting pressure and equalize</h3>
+      <p>Use the <a href="/suspension.html" style="color:var(--lichen);font-weight:600">suspension calculator</a> or the sticker on the back of your fork lowers to find a starting pressure. Pump to that pressure, then remove the pump. Do not measure sag with the pump attached - the hose adds false volume to the reading.</p>
+      <p><strong>RockShox Solo Air and DebonAir:</strong> After pumping, slowly compress the fork through at least 50% of travel five times to equalize the positive and negative air chambers. Do this after every pressure adjustment. Without equalization, sag readings will be inaccurate.</p>
+      <p><strong>RockShox DebonAir+ (Pike C1, Lyrik D1, ZEB A2 and newer):</strong> The equalization dimple sits near 35% travel. Increase pressure in 50-75 PSI increments, cycle the fork 5 times through full travel after each increment, then repeat until you reach target pressure.</p>
+      <p><strong>Fox FLOAT forks:</strong> No separate equalization procedure required. Pump to pressure, remove the pump, and measure sag.</p>
+      <div class="pro-tip"><strong>The hiss myth:</strong> The hiss you hear when removing the pump is air venting from the pump hose - not your fork losing pressure. You have not lost any air. Reattach the pump if you want to verify.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <div class="phase-label red">Sag</div>
+      <h3>Measure sag correctly</h3>
+      <p>Lean your bike against a wall. Mount the bike fully kitted, get into your normal riding position with weight on pedals, elbows slightly bent, and hold that position for at least 10 seconds to let the suspension settle. Then step off carefully without bouncing or rocking the bike.</p>
+      <p>Measure the distance from the dust wiper to the O-ring. This is your sag in mm. Divide by total travel to get the percentage. Use the <a href="/suspension.html#sag" style="color:var(--ochre)">sag calculator</a> to convert instantly.</p>
+      <div class="pro-tip"><strong>Example:</strong> 150mm fork, O-ring settled <span data-metric="33mm" data-imperial="1.3 in">33mm</span> from wiper. 33 divided by 150 = 22% sag.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <div class="phase-label red">Sag</div>
+      <h3>Target sag by brand, spring, and riding style</h3>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="spec-table">
+        <tr><th>Brand and Spring</th><th>XC / Trail</th><th>Enduro</th><th>DH</th></tr>
+        <tr><td>Fox FLOAT (all models)</td><td class="val">15-20%</td><td class="val">18-22%</td><td class="val">20-25%</td></tr>
+        <tr><td>RockShox Solo Air</td><td class="val">18-22%</td><td class="val">22-25%</td><td class="val">25-28%</td></tr>
+        <tr><td>RockShox DebonAir</td><td class="val">20-25%</td><td class="val">25-28%</td><td class="val">28-30%</td></tr>
+        <tr><td>RockShox DebonAir+</td><td class="val">22-27%</td><td class="val">28-30%</td><td class="val">30-32%</td></tr>
+        <tr><td>Rear shock (air, any brand)</td><td class="val">25-28%</td><td class="val">28-30%</td><td class="val">30-32%</td></tr>
+        <tr><td>Rear shock (coil)</td><td class="val">25-28%</td><td class="val">28-30%</td><td class="val">30-32%</td></tr>
+      </table></div>
+      <p>Adjust pressure until you hit your target. After your first ride, check the O-ring. Ideally you want to use 90-100% of travel on the biggest hits without harsh bottom-out.</p>
+    </div>
+  </div>
+
+  <h2 class="section-head" id="phase3">Phase 3 - Rebound</h2>
+
+  <div class="step-card">
+    <div class="step-num">8</div>
+    <div class="step-body">
+      <div class="phase-label blue">Rebound</div>
+      <h3>What rebound does</h3>
+      <p>Rebound controls how quickly the suspension extends after compression. Too fast and the fork kicks back (pogo stick feel). Too slow and it packs down through successive bumps, never returning to full travel between hits, making the bike feel low and wooden.</p>
+      <p>Rebound dials are red on both Fox and RockShox. Clockwise (turtle icon) is slower. Counter-clockwise (hare icon) is faster. The correct setting is linked directly to air pressure: more pressure stores more energy in the spring, which needs more rebound damping (more clicks clockwise) to stay controlled.</p>
+      <div class="warning-tip"><strong>Always re-check rebound after changing pressure.</strong> A 10+ PSI pressure change requires a rebound adjustment. This is the most overlooked step in suspension setup.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">9</div>
+    <div class="step-body">
+      <div class="phase-label blue">Rebound</div>
+      <h3>Setting rebound from closed position</h3>
+      <p>Turn the red rebound dial fully clockwise until it stops (fully closed / turtle icon). Then back it out counter-clockwise to the recommended number of clicks for your fork and pressure. Reference tables for Fox and RockShox are below.</p>
+      <p>Test: push the fork quickly to about 30% travel and release. It should return smoothly and settle without a second bounce. If it rebounds so fast it kicks your hands upward, add 1-2 clicks clockwise. If it feels sluggish and does not return fully before the next test, back off 1-2 clicks counter-clockwise.</p>
+      <div class="pro-tip"><strong>On the trail:</strong> The classic test is a section of closely spaced braking bumps. If the fork feels like it is sinking lower through the section, rebound is too slow. If the front wheel skitters and loses traction, rebound is too fast.</div>
+    </div>
+  </div>
+
+  <h2 class="section-head" id="phase4">Phase 4 - Compression Damping</h2>
+
+  <div class="step-card">
+    <div class="step-num">10</div>
+    <div class="step-body">
+      <div class="phase-label">Compression</div>
+      <h3>Low-speed vs high-speed compression</h3>
+      <p>Suspension speed here means the speed of the damper shaft, not the bike. Low-speed compression (LSC) handles slow inputs: rider weight shifts, nose-dive under braking, pumping through a berm, G-outs. High-speed compression (HSC) handles fast inputs: square-edge hits, rock gardens, drops and landings.</p>
+      <p>Many forks have only LSC as a blue lever or dial. High-end forks - Fox GRIP2, GRIP X2, RockShox Charger 3 RC2 - have both as separate adjusters. Simpler forks have a 3-position lever (Open / Medium / Firm).</p>
+      <div class="pro-tip"><strong>Order matters:</strong> Set pressure first, then rebound, then compression. Never try to fix a soft spring with extra compression damping. It creates a fork that is harsh on small bumps but still bottoms out. Add pressure or a token instead.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">11</div>
+    <div class="step-body">
+      <div class="phase-label">Compression</div>
+      <h3>Fox compression starting points</h3>
+      <p><strong>3-position lever:</strong> Start in Open. Move to Medium if the fork dives excessively under braking. Firm is for climbing only.</p>
+      <p><strong>Fox GRIP2 and GRIP X (34, 36, 38):</strong> From fully closed (full clockwise), back out HSC 5 clicks and LSC 10 clicks. These are Fox official starting points from the 2025 owners manual at tech.ridefox.com. Add LSC 1 click at a time if the fork sits too low in its travel. Add HSC 1 click at a time if big hits feel harsh.</p>
+      <p><strong>Fox GRIP X2 (38, 2024+):</strong> HSC 5 clicks from closed, LSC 10 clicks from closed. The X2 lets you tune LSC and HSC completely independently - use HSC for bottom-out control and LSC for ride-height support without affecting small-bump sensitivity.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">12</div>
+    <div class="step-body">
+      <div class="phase-label">Compression</div>
+      <h3>RockShox compression starting points</h3>
+      <p><strong>Charger RC (Select, Base):</strong> Single LSC adjuster. Start at middle of range, not fully open. Add clicks if the fork wallows or dives too much. Back off if your hands sting over chatter.</p>
+      <p><strong>Charger 3 RC2 and Charger 3.1 RC2 (Ultimate, Select+, Pike, Lyrik, ZEB):</strong> Has independent HSC and LSC. Start both at middle of their range - this is different from older RockShox dampers and is specifically recommended by SRAM for the Charger 3 system. Adjust LSC first, then use HSC only to control large impacts and bottom-out events.</p>
+      <div class="pro-tip"><strong>Common mistake:</strong> Running both LSC and HSC fully open feels soft initially but makes the fork hard to tune. The dampers are designed to operate from the middle of their range. Mid-range compression with correct air pressure feels better than open dampers with low pressure.</div>
+    </div>
+  </div>
+
+  <h2 class="section-head" id="phase5">Phase 5 - Volume Spacers and Tokens</h2>
+
+  <div class="step-card">
+    <div class="step-num">13</div>
+    <div class="step-body">
+      <div class="phase-label">Advanced</div>
+      <h3>What tokens and spacers do</h3>
+      <p>Fox volume spacers and RockShox Bottomless Tokens sit inside the air chamber and reduce its volume. A smaller chamber means pressure ramps up more aggressively in the last third of travel, resisting bottom-out without affecting feel in the first half of the stroke.</p>
+      <p>This allows you to run a lower starting pressure for better small-bump sensitivity while still having strong bottom-out support. Adding a token improves bottom-out resistance. Removing a token makes the progression more linear and the end-stroke softer.</p>
+      <div class="warning-tip"><strong>After adding or removing a token, repeat the full setup process from Phase 2.</strong> The same PSI will now produce a different sag percentage.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">14</div>
+    <div class="step-body">
+      <div class="phase-label">Advanced</div>
+      <h3>Fox volume spacer guide</h3>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="spec-table">
+        <tr><th>Riding Style</th><th>Spacers</th><th>Effect</th></tr>
+        <tr><td>XC / smooth trail</td><td class="val">0</td><td>Linear progression, uses full travel</td></tr>
+        <tr><td>All-mountain trail</td><td class="val">0-1</td><td>Slight ramp-up, better support</td></tr>
+        <tr><td>Enduro</td><td class="val">1-2</td><td>Strong ramp-up, drop and gap support</td></tr>
+        <tr><td>DH / bike park</td><td class="val">2-3</td><td>Very strong bottom-out resistance</td></tr>
+      </table></div>
+      <p>Fork-specific spacer part numbers: Fox 32mm uses 8cc blue spacers (PN 234-04-811). Fox 34mm uses 10cc green spacers (PN 234-04-953). Fox 36mm uses 10cc orange spacers (PN 234-04-736). Fox 38mm uses 10cc yellow spacers (PN 234-44-189). Do not exceed the maximum spacer count listed in your fork owners manual.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">15</div>
+    <div class="step-body">
+      <div class="phase-label">Advanced</div>
+      <h3>RockShox Bottomless Token guide</h3>
+      <p>Most RockShox forks ship with zero tokens. The Vivid Air rear shock often needs 1-2 tokens even at recommended pressure due to its larger air chamber. After adding a token, re-inflate to previous pressure and re-check sag. It will likely have risen slightly. Add 2-5 PSI and re-measure until you are back at your sag target.</p>
+      <div class="pro-tip"><strong>Token vs pressure:</strong> If you are bottoming out at correct sag, try one token before raising pressure. Higher pressure affects feel throughout all travel. A token only affects the last third of travel. Check support.rockshox.com for your fork model maximum token count.</div>
+    </div>
+  </div>
+
+  <h2 class="section-head" id="fox">Fox Fork - Pressure and Rebound Reference</h2>
+
+  <div class="brand-section">
+    <div class="brand-header">
+      <h2>Fox 34 FLOAT (2023-2025)</h2>
+      <p>Trail fork. Sag: 15-20%. Max PSI: 120. Source: Fox Tech Center (tech.ridefox.com), Fox 34 2025 Tuning Guide.</p>
+    </div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="spec-table">
+      <tr><th>Weight (lbs)</th><th>Weight (kg)</th><th>34 FLOAT PSI</th><th>Rebound FIT4</th><th>Rebound GRIP / GRIP2</th></tr>
+      <tr><td>120-130</td><td>54-59</td><td class="val">64</td><td class="val">12 clicks</td><td class="val">13 clicks</td></tr>
+      <tr><td>130-140</td><td>59-64</td><td class="val">69</td><td class="val">11 clicks</td><td class="val">12 clicks</td></tr>
+      <tr><td>140-150</td><td>64-68</td><td class="val">74</td><td class="val">10 clicks</td><td class="val">11 clicks</td></tr>
+      <tr><td>150-160</td><td>68-73</td><td class="val">78</td><td class="val">9 clicks</td><td class="val">10 clicks</td></tr>
+      <tr><td>160-170</td><td>73-77</td><td class="val">83</td><td class="val">8 clicks</td><td class="val">9 clicks</td></tr>
+      <tr><td>170-180</td><td>77-82</td><td class="val">88</td><td class="val">7 clicks</td><td class="val">8 clicks</td></tr>
+      <tr><td>180-190</td><td>82-86</td><td class="val">92</td><td class="val">6 clicks</td><td class="val">7 clicks</td></tr>
+      <tr><td>190-200</td><td>86-91</td><td class="val">97</td><td class="val">6 clicks</td><td class="val">6 clicks</td></tr>
+      <tr><td>200-210</td><td>91-95</td><td class="val">102</td><td class="val">5 clicks</td><td class="val">5 clicks</td></tr>
+      <tr><td>210-220</td><td>95-100</td><td class="val">106</td><td class="val">4 clicks</td><td class="val">4 clicks</td></tr>
+      <tr><td>220-230</td><td>100-104</td><td class="val">111</td><td class="val">3 clicks</td><td class="val">3 clicks</td></tr>
+      <tr><td>230-240</td><td>104-109</td><td class="val">116</td><td class="val">2 clicks</td><td class="val">2 clicks</td></tr>
+      <tr><td>240-250</td><td>109-113</td><td class="val">120 (max)</td><td class="val">1 click</td><td class="val">1 click</td></tr>
+    </table></div>
+    <div class="pro-tip">All rebound clicks are from the fully closed clockwise position. For GRIP2 with LSC and HSC: HSC 5 clicks from closed, LSC 10 clicks from closed as a starting point (Fox 2025 official).</div>
+  </div>
+
+  <div class="brand-section">
+    <div class="brand-header">
+      <h2>Fox 36 FLOAT (2023-2025)</h2>
+      <p>Enduro / trail fork. Sag: 15-20%. Max PSI: 120. Source: tech.ridefox.com</p>
+    </div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="spec-table">
+      <tr><th>Weight (lbs)</th><th>Weight (kg)</th><th>36 FLOAT PSI</th><th>Rebound (clicks from closed)</th></tr>
+      <tr><td>120-130</td><td>54-59</td><td class="val">56</td><td class="val">13</td></tr>
+      <tr><td>140-150</td><td>64-68</td><td class="val">66</td><td class="val">11</td></tr>
+      <tr><td>160-170</td><td>73-77</td><td class="val">76</td><td class="val">9</td></tr>
+      <tr><td>180-190</td><td>82-86</td><td class="val">86</td><td class="val">7</td></tr>
+      <tr><td>190-200</td><td>86-91</td><td class="val">91</td><td class="val">6</td></tr>
+      <tr><td>200-210</td><td>91-95</td><td class="val">96</td><td class="val">6</td></tr>
+      <tr><td>210-220</td><td>95-100</td><td class="val">101</td><td class="val">5</td></tr>
+      <tr><td>220-230</td><td>100-104</td><td class="val">106</td><td class="val">4</td></tr>
+      <tr><td>240-250</td><td>109-113</td><td class="val">116</td><td class="val">2</td></tr>
+    </table></div>
+    <div class="pro-tip">For GRIP X2 on 36 (2024+): HSC 5 clicks from closed, LSC 10 clicks from closed. The 36 FLOAT uses a larger air spring than the 34, so pressures are lower for the same rider weight.</div>
+  </div>
+
+  <div class="brand-section">
+    <div class="brand-header">
+      <h2>Fox 38 FLOAT (2023-2025)</h2>
+      <p>Enduro / DH fork. Sag: 15-20%. Max PSI: 140 (FLOAT), 120 (Rhythm). Source: tech.ridefox.com</p>
+    </div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="spec-table">
+      <tr><th>Weight (lbs)</th><th>Weight (kg)</th><th>38 FLOAT PSI</th><th>Rebound (clicks from closed)</th></tr>
+      <tr><td>120-130</td><td>54-59</td><td class="val">52</td><td class="val">13</td></tr>
+      <tr><td>150-160</td><td>68-73</td><td class="val">66</td><td class="val">10</td></tr>
+      <tr><td>170-180</td><td>77-82</td><td class="val">76</td><td class="val">8</td></tr>
+      <tr><td>190-200</td><td>86-91</td><td class="val">86</td><td class="val">6</td></tr>
+      <tr><td>200-210</td><td>91-95</td><td class="val">91</td><td class="val">6</td></tr>
+      <tr><td>210-220</td><td>95-100</td><td class="val">96</td><td class="val">5</td></tr>
+      <tr><td>230-240</td><td>104-109</td><td class="val">106</td><td class="val">3</td></tr>
+      <tr><td>240-250</td><td>109-113</td><td class="val">111</td><td class="val">2</td></tr>
+    </table></div>
+    <div class="pro-tip">For GRIP X2 on 38 (2024+): HSC 5 clicks, LSC 10 clicks from closed. The 38 has the largest FLOAT air spring in the lineup - pressures are noticeably lower than the 36 for the same rider weight.</div>
+  </div>
+
+  <h2 class="section-head" id="rockshox">RockShox - Model Reference</h2>
+
+  <div class="brand-section">
+    <div class="brand-header blue">
+      <h2>RockShox Model Overview</h2>
+      <p>Air spring type and damper determine setup procedure. Source: SRAM 2025 Front Suspension Specifications PDF, sram.com.</p>
+    </div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%"><table class="spec-table">
+      <tr><th>Model</th><th>Typical Use</th><th>Air Spring</th><th>Damper</th><th>Sag Target</th></tr>
+      <tr><td><strong>SID SL / SID</strong></td><td>XC Race</td><td>DebonAir / DebonAir+</td><td>Charger Race Day 2</td><td class="val">20-25%</td></tr>
+      <tr><td><strong>Reba / Recon</strong></td><td>XC / Trail entry</td><td>Solo Air / DebonAir</td><td>Motion Control RL</td><td class="val">18-22%</td></tr>
+      <tr><td><strong>Pike</strong></td><td>Trail / All-mountain</td><td>DebonAir+ (C1+)</td><td>Charger 3.1 RC2</td><td class="val">25-28%</td></tr>
+      <tr><td><strong>Lyrik</strong></td><td>Enduro / Trail</td><td>DebonAir+ (D1+)</td><td>Charger 3.1 RC2</td><td class="val">25-30%</td></tr>
+      <tr><td><strong>ZEB</strong></td><td>Enduro / DH</td><td>DebonAir+ (A2+)</td><td>Charger 3 RC2</td><td class="val">27-32%</td></tr>
+      <tr><td><strong>BoXXer</strong></td><td>DH</td><td>DebonAir+</td><td>Charger 3 RC2</td><td class="val">28-32%</td></tr>
+      <tr><td><strong>Domain</strong></td><td>Enduro / DH</td><td>DebonAir</td><td>Isolator RC</td><td class="val">25-30%</td></tr>
+    </table></div>
+    <div class="pro-tip"><strong>TrailHead App:</strong> For model and year-specific pressure and rebound recommendations, use the RockShox TrailHead app (iOS and Android) with your fork serial number. This adjusts for exact fork version and air spring generation, which makes a significant difference to recommended PSI values.</div>
+  </div>
+
+  <div class="brand-section">
+    <div class="brand-header blue">
+      <h2>RockShox DebonAir+ Equalization Procedure</h2>
+      <p>For Pike C1, Lyrik D1, ZEB A2 and newer. Source: sram.com/en/rockshox/learn/vivid-air-setup</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="width:34px;height:34px;font-size:16px">1</div>
+      <div class="step-body"><p>Set compression and rebound to middle of their adjustment range.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="width:34px;height:34px;font-size:16px">2</div>
+      <div class="step-body"><p>Attach pump and add 50-75 PSI. Remove the pump.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="width:34px;height:34px;font-size:16px">3</div>
+      <div class="step-body"><p>Compress the fork slowly through full travel 5 times. The DebonAir+ equalization point sits near 35% travel, which is deeper than the older DebonAir system at 15%.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="width:34px;height:34px;font-size:16px">4</div>
+      <div class="step-body"><p>Repeat steps 2 and 3, adding 50-75 PSI each time, until you reach your target pressure. Never add all pressure in one step.</p></div>
+    </div>
+    <div class="step-card">
+      <div class="step-num" style="width:34px;height:34px;font-size:16px">5</div>
+      <div class="step-body"><p>Cycle the fork 5 more times after reaching final pressure, then remove pump and measure sag.</p></div>
+    </div>
+  </div>
+
+  <h2 class="section-head" id="troubleshoot">Troubleshooting</h2>
+
+  <div class="symptom-grid">
+    <div class="symptom-card">
+      <div class="symptom">Fork dives under braking</div>
+      <div class="fix">Check sag first. If over 25%, add 5 PSI and re-measure. If sag is correct, add 2 clicks LSC. Without LSC, move the 3-position lever to Medium.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Harsh over small chatter</div>
+      <div class="fix">Back off 2 clicks of LSC. If there is no LSC, reduce pressure 5 PSI and re-check sag. Over-pressured springs feel harsh off the top of travel.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Bottoming out harshly</div>
+      <div class="fix">Sag is probably too high. Add 5 PSI and re-measure. If sag is already correct, add one token or volume spacer and redo setup from Phase 2.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Fork feels pogo stick bouncy</div>
+      <div class="fix">Rebound is too fast. Add 2-3 clicks clockwise. Also check sag - an over-pressured fork can feel bouncy because it never spends time in its travel.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Fork packs down through bumps</div>
+      <div class="fix">Rebound is too slow. Back off 2-3 clicks counter-clockwise. This is the most common rebound problem, especially after adding pressure without adjusting rebound.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Sag changes between rides</div>
+      <div class="fix">RockShox: positive and negative chambers not equalizing - redo the equalization procedure fully. Fox: check the Schrader valve cap and pump seal. Temperature swings of 20 degrees C can shift pressure by 5-8 PSI.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Too much front-end dive in corners</div>
+      <div class="fix">Add 1-2 clicks LSC to support ride height in corners. Also check saddle height and position - too-high saddle pushes weight forward and contributes to front-end dive.</div>
+    </div>
+    <div class="symptom-card">
+      <div class="symptom">Not using full travel</div>
+      <div class="fix">Sag is too low or there are too many tokens. Drop pressure 5 PSI, re-check sag, and review O-ring after a hard ride. If still not using travel, remove a token and repeat setup.</div>
+    </div>
+  </div>
+
+  <div class="guide-related">
+    <div class="guide-related-label">Related Guides & Calculators</div>
+    <a href="fit-basics.html" class="btn-outline">Bike Fit Basics</a>
+    <a href="saddle-seatpost-setup.html" class="btn-outline">Saddle & Seatpost Setup</a>
+    <a href="tubeless-conversion.html" class="btn-outline">Tubeless Conversion</a>
+    <a href="../suspension.html" class="btn">Suspension Calculator</a>
+  </div>
+
+</main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span class="footer-logo">BikeSetup<span style="color:var(--lichen)">.</span>PRO</span>
+    <span class="footer-tagline">No ads &middot; No tracking &middot; Just setup</span>
+    <nav class="footer-nav">
+      <a href="/index.html">Home</a>
+      <a href="/calculators.html">Calculators</a>
+      <a href="/suspension.html">Suspension</a>
+      <a href="/guides/index.html">Guides</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="../nav.js"></script>
+<script>renderSiteHeader('guides','suspension-setup');</script>
+<script>document.addEventListener('unitsdetected',function(e){var units=e.detail.units;var country=sessionStorage.getItem('bsp_country')||'';if(!country)return;var label=units==='imperial'?'lbs / imperial':'kg / metric';var toast=document.createElement('div');toast.className='unit-toast';toast.innerHTML='<span style=line-height:1.4><strong style=display:block;margin-bottom:2px;color:#fff>Units set to '+label+'</strong><span style=color:#aaa;font-size:12px>Auto-detected - measurements updated in this guide</span></span><button onclick="this.parentElement.classList.remove(\x27show\x27)" style="margin-left:8px;background:none;border:none;color:#aaa;cursor:pointer;font-size:18px;padding:0">&#215;</button>';document.body.appendChild(toast);requestAnimationFrame(function(){toast.classList.add('show');});setTimeout(function(){toast.classList.remove('show');setTimeout(function(){toast.remove();},350);},6000);});</script></body>
+</html>
